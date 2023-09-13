@@ -41,7 +41,7 @@ def send_mail(name, email, phone, message):
     password = MY_PASSWORD
     msg['From'] = MY_EMAIL
     msg['To'] = "omarmobarak53@gmail.com"
-    msg['Subject'] = "New message from 'Omar's Blog' user"
+    msg['Subject'] = "New message from 'Omar Mobarak' Portfolio' user"
 
     # add in the message body
     body = f"Name: {name}\nEmail: {email}\nPhone Number: {phone}\nMessage: {message}"
