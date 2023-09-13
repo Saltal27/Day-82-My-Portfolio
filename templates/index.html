@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Omar Mobarak</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-..." rel="stylesheet"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Nunito:wght@400;700;900&family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/static/img/favicon_io/site.webmanifest">
+</head>
+<body>
+
+<header class="header" id="header" data-aos="fade-down" data-aos-duration="3000" data-aos-delay="1000">
+    <nav class="navbar navbar-expand-md" id="navbar">
+        <div class="container">
+            <a class="navbar-brand logo" href="#hero">{{ logo }}</a>
+            <button id="toggleButton" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"
+                    data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+                <span class="stick"></span>
+                <span class="stick"></span>
+                <span class="stick"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link scrollto" href="#hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scrollto" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scrollto" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scrollto" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<section class="d-flex flex-column justify-content-center align-items-center" id="hero">
+    <div class="hero-container" data-aos="fade-in">
+        <h1>I am Omar Mobarak</h1>
+        <p>A <em><span class="typed" data-typed-items="Python Developer, Web Developer, UI/UX Designer"></span></em></p>
+        <a class="btn cta-button red-button" role="button" href="#portfolio">My Portfolio</a>
+    </div>
+</section>
+
+<section class="py-5" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img alt="Profile Picture" class="profile-img img-fluid mb-4"
+                     src="{{ url_for('static', filename='img/profile-img.jpg') }}">
+            </div>
+            <div class="col-lg-6 about-txt">
+                <h2>About Me</h2>
+                <p class="lead">I am a Python developer and UI/UX designer with expertise in Flask, HTML, CSS, and
+                    JavaScript. I have a passion for creating visually appealing and user-friendly web applications.</p>
+                <p>Regarding my education, I am currently pursuing a degree in Medicine at Damascus University.
+                    Although I do not possess a formal qualification in Computer Science, I have a keen interest in
+                    programming and design.
+                    I have actively worked on personal projects, gaining practical experience in developing attractive
+                    and easy-to-use web applications.</p>
+                <p>My long term goal is to combine my medical knowledge with my programming skills to create innovative
+                    solutions in the healthcare industry.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" id="portfolio">
+    <div class="container">
+        <h2 class="text-center mb-5">Portfolio</h2>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <img alt="Project 1" class="card-img-top" src="image1.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title">Project 1</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <a class="btn red-button" href="#">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <img alt="Project 2" class="card-img-top" src="image2.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title">Project 2</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <a class="btn red-button" href="#">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <img alt="Project 3" class="card-img-top" src="image3.jpg">
+                    <div class="card-body">
+                        <h5 class="card-title">Project 3</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <a class="btn red-button" href="#">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="contact" id="contact">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Contact Me</h2>
+            <p>Thank you for your interest in contacting me! Please feel free to reach out with any questions,
+                comments, or inquiries you may have. I value your feedback and will do my best to respond
+                to you promptly. Additionally, you can also reach me on WhatsApp/Telegram by clicking on the
+                links in the footer.</p>
+        </div>
+
+        <div class="row" data-aos="fade-in">
+            <div class="col-lg-7 mt-2 mb-3 d-flex align-items-stretch mx-auto" style="text-align: left;">
+                <form action="{{ url_for('home') }}#contact" class="flask-WTForm" method="POST" novalidate>
+                    {{ contact_form.hidden_tag() }}
+
+                    {% if sent_successfully %}
+                    <span id="success-message"
+                          style="color: #28a745; padding: 5px 10px; border-radius: 5px; margin-bottom: 10px;">
+                                    {{ sent_successfully }}
+                                </span>
+
+                    <script>
+                                  // Get the success message element
+                                  var successMessage = document.getElementById("success-message");
+
+                                  // Remove the success message when the page is refreshed
+                                  window.addEventListener("beforeunload", function() {
+                                    successMessage.remove();
+                                  });
+
+
+
+                    </script>
+                    {% endif %}
+                    <script>
+                              // Clear the URL hash after loading the page
+                              window.addEventListener('load', function() {
+                                window.history.replaceState({}, document.title, window.location.pathname);
+                              });
+
+                    </script>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="name">Name:</label>
+                            {{ contact_form.name(class="form-control form-input", placeholder="Name") }}
+                            {% for error in contact_form.name.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="phone_number">Phone Number:</label>
+                            {{ contact_form.phone_number(class="form-control form-input", placeholder="Phone Number")
+                            }}
+                            {% for error in contact_form.phone_number.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        {{ contact_form.email(class="form-control form-input", placeholder="Email") }}
+                        {% for error in contact_form.email.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        {{ contact_form.message(class="form-control form-textarea", placeholder="Message") }}
+                        {% for error in contact_form.message.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center">
+                        {{ contact_form.submit(class="btn red-button send_button") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="text-white text-center py-3">
+    <div class="container">
+        <p>&copy; {{ year }} Omar Mobarak. All rights reserved.</p>
+        <div class="footer-links">
+            <a class="text-white" href="https://wa.me/963967208077"><i class="fab fa-lg fa-whatsapp"></i></a>
+            <a class="text-white" href="https://t.me/Omarmobarak"><i class="fab fa-lg fa-telegram"></i></a>
+            <a class="text-white" href="https://github.com/Saltal27"><i class="fab fa-lg fa-github"></i></a>
+            <a class="text-white" href="https://dribbble.com/SalTal1"><i class="fab fa-lg fa-dribbble"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>
