@@ -1,22 +1,26 @@
 // Animated Scroll Reveal
 AOS.init();
 
+
 // Smooth scrolling for logo, navigation links, and CTA button
 $(document).ready(function() {
-    $("a.logo, a.nav-link, a.cta-button").on('click', function(event) {
-        if (this.hash !== "") {
-            event.preventDefault();
+    if (window.location.pathname === '/') {
+        $("a.logo, a.nav-link, a.cta-button").on('click', function(event) {
+            if (this.hash !== "") {
+                event.preventDefault();
 
-            var hash = this.hash;
+                var hash = this.hash;
 
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 800, function(){
-                window.location.hash = hash;
-            });
-        }
-    });
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function(){
+                    window.location.hash = hash;
+                });
+            }
+        });
+    }
 });
+
 
 // Navbar links active state on scroll
 const navbarlinks = document.querySelectorAll('#navbar .scrollto')
@@ -37,6 +41,7 @@ const navbarlinksActive = () => {
 
 window.addEventListener('load', navbarlinksActive)
 window.addEventListener('scroll', navbarlinksActive)
+
 
 // Toggle button animation
 const toggleButton = document.getElementById('toggleButton');

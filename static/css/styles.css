@@ -380,3 +380,10 @@ footer p {
 .footer-links a:hover i {
     color: #F9D949;
 }
+
+
+/* Login Section */
+.login{
+    min-height: 17rem;
+    margin: 120px auto 50px;
+}
