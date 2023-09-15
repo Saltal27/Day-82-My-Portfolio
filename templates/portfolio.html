@@ -34,6 +34,9 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
         <div class="tab-content" id="portfolio-tabs-content">
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 <div class="row justify-content-center">
+                    {% if not current_user.is_authenticated %}
+                    {% set projects = online_projects %}
+                    {% endif %}
                     {% for project in projects %}
                     <div class="col-lg-4 col-10 mb-4">
                         <div class="card">
@@ -49,7 +52,10 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                 </div>
             </div>
             <div class="tab-pane fade" id="webdev" role="tabpanel" aria-labelledby="webdev-tab">
-                <div class="row">
+                <div class="row justify-content-center">
+                    {% if not current_user.is_authenticated %}
+                    {% set projects_webdev = online_projects_webdev %}
+                    {% endif %}
                     {% for project in projects_webdev %}
                     <div class="col-lg-4 mb-4">
                         <div class="card">
@@ -65,7 +71,10 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                 </div>
             </div>
             <div class="tab-pane fade" id="uiux" role="tabpanel" aria-labelledby="uiux-tab">
-                <div class="row">
+                <div class="row justify-content-center">
+                    {% if not current_user.is_authenticated %}
+                    {% set projects_uiux = online_projects_uiux %}
+                    {% endif %}
                     {% for project in projects_uiux %}
                     <div class="col-lg-4 mb-4">
                         <div class="card">
@@ -81,7 +90,10 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                 </div>
             </div>
             <div class="tab-pane fade" id="python" role="tabpanel" aria-labelledby="python-tab">
-                <div class="row">
+                <div class="row justify-content-center">
+                    {% if not current_user.is_authenticated %}
+                    {% set projects_python= online_projects_python %}
+                    {% endif %}
                     {% for project in projects_python %}
                     <div class="col-lg-4 mb-4">
                         <div class="card">

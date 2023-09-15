@@ -51,14 +51,10 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
         <p>{{ project.role }}</p>
 
         {% if project.links %}
-            {% set links = project.links.split(', ') %}
             <h3>Links</h3>
-            {% if links|length == 1 %}
-                <a href="{{ links[0] }}">GitHub Repository</a>
-            {% else %}
-                <a class="mx-2" href="{{ links[0] }}">GitHub Repository</a>
-                <a class="mx-2" href="{{ links[1] }}">{{ project.title }}</a>
-            {% endif %}
+            {% for n in range(project.links.split(', ')|length) %}
+                <a class="mx-2" href="{{ project.links.split(', ')[n] }}">{{ project.links_texts.split(', ')[n] }}</a>
+            {% endfor %}
         {% endif %}
 
         <div class="mt-5">

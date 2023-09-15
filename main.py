@@ -18,6 +18,7 @@ from wtforms.validators import DataRequired, Email, Length
 # MY_EMAIL = os.environ.get("MY_EMAIL")
 # MY_PASSWORD = os.environ.get("MY_PASSWORD")
 
+
 LOGO = "</>"
 
 
@@ -47,7 +48,9 @@ class AddProjectForm(FlaskForm):
     technologies_used = StringField("Technologies Used")
     role = StringField("Role", validators=[DataRequired()])
     links = StringField("Links")
-    submit = SubmitField("Submit Project")
+    links_texts = StringField("Links Texts")
+    status = StringField("Status")
+    submit = SubmitField("Submit Project", validators=[DataRequired()])
 
 
 # ------------------ Initializing A Flask App With Some Extensions --------------------- #
@@ -106,6 +109,8 @@ class Project(db.Model):
     technologies_used = db.Column(db.String)
     role = db.Column(db.String, nullable=False)
     links = db.Column(db.String)
+    links_texts = db.Column(db.String)
+    status = db.Column(db.String, nullable=False)
 
     def __repr__(self):
         return f'<Project {self.title}>'
@@ -174,6 +179,13 @@ def home():
     projects_webdev = [project for project in projects if project.category == "Web Development"]
     projects_uiux = [project for project in projects if project.category == "UI/UX"]
     projects_python = [project for project in projects if project.category == "Python"]
+    online_projects = [project for project in projects if project.status == "Online"]
+    online_projects_webdev = [project for project in online_projects if project.category == "Web Development"]
+    online_projects_uiux = [project for project in online_projects if project.category == "UI/UX"]
+    online_projects_python = [project for project in online_projects if project.category == "Python"]
+    print(online_projects_webdev)
+    print(projects_uiux)
+
 
     contact_form = ContactMe()
     sent_successfully = ""
@@ -197,6 +209,10 @@ def home():
         projects_webdev=projects_webdev,
         projects_uiux=projects_uiux,
         projects_python=projects_python,
+        online_projects=online_projects,
+        online_projects_webdev=online_projects_webdev,
+        online_projects_uiux=online_projects_uiux,
+        online_projects_python=online_projects_python,
         contact_form=contact_form,
         sent_successfully=sent_successfully
     )
@@ -208,6 +224,10 @@ def portfolio():
     projects_webdev = [project for project in projects if project.category == "Web Development"]
     projects_uiux = [project for project in projects if project.category == "UI/UX"]
     projects_python = [project for project in projects if project.category == "Python"]
+    online_projects = [project for project in projects if project.status == "Online"]
+    online_projects_webdev = [project for project in online_projects if project.category == "Web Development"]
+    online_projects_uiux = [project for project in online_projects if project.category == "UI/UX"]
+    online_projects_python = [project for project in online_projects if project.category == "Python"]
 
     return render_template(
         "portfolio.html",
@@ -215,6 +235,10 @@ def portfolio():
         projects_webdev=projects_webdev,
         projects_uiux=projects_uiux,
         projects_python=projects_python,
+        online_projects=online_projects,
+        online_projects_webdev=online_projects_webdev,
+        online_projects_uiux=online_projects_uiux,
+        online_projects_python=online_projects_python,
     )
 
 
@@ -275,6 +299,8 @@ def add_new_project():
                 technologies_used=add_form.technologies_used.data,
                 role=add_form.role.data,
                 links=add_form.links.data,
+                links_texts=add_form.links_texts.data,
+                status=add_form.status.data,
             )
             db.session.add(new_project)
             db.session.commit()
@@ -296,6 +322,8 @@ def edit_project(project_id):
         technologies_used=project.technologies_used,
         role=project.role,
         links=project.links,
+        links_texts=project.links_texts,
+        status=project.status,
     )
     if edit_form.validate_on_submit():
         project.title = edit_form.title.data
@@ -306,6 +334,8 @@ def edit_project(project_id):
         project.technologies_used = edit_form.technologies_used.data
         project.role = edit_form.role.data
         project.links = edit_form.links.data
+        project.links_texts = edit_form.links_texts.data
+        project.status = edit_form.status.data
         db.session.commit()
         return redirect(url_for("project_details", project_id=project.id))
 

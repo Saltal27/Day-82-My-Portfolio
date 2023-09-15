@@ -84,6 +84,20 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                         <span style="color: #F45050;">{{ error }}</span>
                         {% endfor %}
                     </div>
+                    <div class="form-group">
+                        <label class="mb-2" for="links_texts">Links Texts:</label>
+                        {{ form.links_texts(class="form-control form-input mb-3", placeholder="Links Texts") }}
+                        {% for error in form.links_texts.errors %}
+                        <span style="color: #F45050;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-2" for="status">Status:</label>
+                        {{ form.status(class="form-control form-input mb-3", placeholder="Status") }}
+                        {% for error in form.status.errors %}
+                        <span style="color: #F45050;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
                     <div class="text-center">
                         {{ form.submit(class="btn red-button send_button") }}
                     </div>
