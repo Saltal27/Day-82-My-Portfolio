@@ -42,10 +42,13 @@ class LoginForm(FlaskForm):
 
 class AddProjectForm(FlaskForm):
     title = StringField("Project Title", validators=[DataRequired()])
-    subtitle = StringField("Project Subtitle", validators=[DataRequired()])
+    subtitle = StringField("Project Subtitle")
     category = StringField("Project Category", validators=[DataRequired()])
     description = StringField("Project Description", validators=[DataRequired()])
     imgs_urls = StringField("Images URLs", validators=[DataRequired()])
+    technologies_used = StringField("Technologies Used")
+    role = StringField("Role", validators=[DataRequired()])
+    links = StringField("Links")
     submit = SubmitField("Submit Project")
 
 
@@ -102,6 +105,9 @@ class Project(db.Model):
     category = db.Column(db.String, nullable=False)
     description = db.Column(db.Text, nullable=False)
     imgs_urls = db.Column(db.String, nullable=False)
+    technologies_used = db.Column(db.String)
+    role = db.Column(db.String, nullable=False)
+    links = db.Column(db.String)
 
     def __repr__(self):
         return f'<Project {self.title}>'
@@ -214,9 +220,10 @@ def portfolio():
     )
 
 
-@app.route("/Project-details/<int:project_id>")
+@app.route("/Portfolio/<int:project_id>", methods=["GET", "Post"])
 def project_details(project_id):
-    return render_template("project_details.html", project_id=project_id)
+    project = Project.query.filter_by(id=project_id).first()
+    return render_template("project-details.html", project=project)
 
 
 # ---------------------------- Admin Pages Routes ------------------------------- #
@@ -259,8 +266,6 @@ def logout_admin():
 @login_required
 def add_new_project():
     add_form = AddProjectForm()
-    h2 = "New Project"
-    p = "Enrich your portfolio with a new fabulous project!"
     if add_form.validate_on_submit():
         with app.app_context():
             new_project = Project(
@@ -269,26 +274,30 @@ def add_new_project():
                 category=add_form.category.data,
                 description=add_form.description.data,
                 imgs_urls=add_form.imgs_urls.data,
+                technologies_used=add_form.technologies_used.data,
+                role=add_form.role.data,
+                links=add_form.links.data,
             )
             db.session.add(new_project)
             db.session.commit()
         return redirect(url_for("home"))
 
-    return render_template("add-project.html", add_form=add_form, h2=h2, p=p)
+    return render_template("add-project.html", form=add_form)
 
 
 @app.route("/edit-project/<int:project_id>", methods=["GET", "Post"])
 @login_required
 def edit_project(project_id):
     project = Project.query.get(project_id)
-    h2 = "Edit Project"
-    p = "Optimize your portfolio with some edits!"
     edit_form = AddProjectForm(
         title=project.title,
         subtitle=project.subtitle,
         category=project.category,
         description=project.description,
         imgs_urls=project.imgs_urls,
+        technologies_used=project.technologies_used,
+        role=project.role,
+        links=project.links,
     )
     if edit_form.validate_on_submit():
         project.title = edit_form.title.data
@@ -296,10 +305,13 @@ def edit_project(project_id):
         project.category = edit_form.category.data
         project.description = edit_form.description.data
         project.imgs_urls = edit_form.imgs_urls.data
+        project.technologies_used = edit_form.technologies_used.data
+        project.role = edit_form.role.data
+        project.links = edit_form.links.data
         db.session.commit()
-        return redirect(url_for("project-details", project_id=project.id))
+        return redirect(url_for("project_details", project_id=project.id))
 
-    return render_template("add-project.html", form=edit_form, h2=h2, p=p)
+    return render_template("edit-project.html", form=edit_form, project=project)
 
 
 @app.route("/delete/<int:project_id>")

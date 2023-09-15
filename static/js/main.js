@@ -90,3 +90,10 @@ $(document).ready(function() {
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  var carousel = new bootstrap.Carousel(document.getElementById('portfolioCarousel'), {
+    interval: 3000,
+    wrap: true,
+    keyboard: true
+  });
+});

@@ -37,9 +37,9 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                      src="{{ url_for('static', filename='img/profile-img.jpg') }}">
             </div>
             <div class="col-lg-6 about-txt">
-                <p class="lead">I am a Python developer and UI/UX designer with expertise in Flask, HTML, CSS, and
+                <p class="lead">I am a <span><em>Python Developer</em></span> and <span><em>UI/UX Designer</em></span> with expertise in Flask, HTML, CSS, and
                     JavaScript. I have a passion for creating visually appealing and user-friendly web applications.</p>
-                <p>Regarding my education, I am currently pursuing a degree in Medicine at Damascus University.
+                <p>Regarding my education, I am currently pursuing a degree in <span><em>Medicine</em></span> at Damascus University.
                     Although I do not possess a formal qualification in Computer Science, I have a keen interest in
                     programming and design.
                     I have actively worked on personal projects, gaining practical experience in developing attractive
@@ -81,7 +81,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                             <div class="card-body">
                                 <h5 class="card-title">{{ project.title }}</h5>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button" href="#">View Details</a>
+                                <a class="btn outline-red-button" href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                 </div>
             </div>
             <div class="tab-pane fade" id="webdev" role="tabpanel" aria-labelledby="webdev-tab">
-                <div class="row">
+                <div class="row justify-content-center">
                     {% for project in projects_webdev[-1:-7:-1] %}
                     <div class="col-lg-4 mb-4">
                         <div class="card">
@@ -97,7 +97,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                             <div class="card-body">
                                 <h5 class="card-title">{{ project.title }}</h5>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button" href="#">View Details</a>
+                                <a class="btn outline-red-button" href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                 </div>
             </div>
             <div class="tab-pane fade" id="uiux" role="tabpanel" aria-labelledby="uiux-tab">
-                <div class="row">
+                <div class="row justify-content-center">
                     {% for project in projects_uiux[-1:-7:-1] %}
                     <div class="col-lg-4 mb-4">
                         <div class="card">
@@ -113,7 +113,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                             <div class="card-body">
                                 <h5 class="card-title">{{ project.title }}</h5>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button" href="#">View Details</a>
+                                <a class="btn outline-red-button" href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                 </div>
             </div>
             <div class="tab-pane fade" id="python" role="tabpanel" aria-labelledby="python-tab">
-                <div class="row">
+                <div class="row justify-content-center">
                     {% for project in projects_python[-1:-7:-1] %}
                     <div class="col-lg-4 mb-4">
                         <div class="card">
@@ -129,7 +129,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                             <div class="card-body">
                                 <h5 class="card-title">{{ project.title }}</h5>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button" href="#">View Details</a>
+                                <a class="btn outline-red-button" href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
                     </div>

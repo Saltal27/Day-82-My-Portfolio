@@ -21,6 +21,20 @@ h2 {
   }
 }
 
+h3 {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    color: #3C486B;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  h3 {
+    margin-bottom: 10px;
+  }
+}
+
 p {
     font-size: 23px;
     line-height: 1.6;
@@ -308,6 +322,10 @@ nav.navbar ul li a:hover {
 }
 
 /* About Me Section */
+#about span {
+    color: #EA5455;
+}
+
 #about .lead {
     font-size: 26px;
 }
@@ -422,8 +440,73 @@ footer p {
 }
 
 
-/* Login Section */
-.login{
-    min-height: 17rem;
-    margin: 100px auto 50px;
+/* Project Details */
+.carousel {
+    margin: 75px auto;
+}
+
+.carousel .carousel-inner {
+    text-align: center;
+}
+
+.carousel .carousel-control-prev-icon {
+    margin-right: 50%;
+}
+
+.carousel .carousel-control-next-icon {
+    margin-left: 50%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: #3C486B;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: #3C486B;
+}
+
+.carousel-item {
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+    transform: translateX(0);
+}
+
+.carousel-item-next,
+.carousel-item-prev {
+    transform: translateX(100%);
+}
+
+.description-container p {
+    margin: 5px auto;
+}
+
+.carousel-item {
+  height: 500px;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 30px;
+  height: 30px;
 }
