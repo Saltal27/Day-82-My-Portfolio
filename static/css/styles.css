@@ -4,6 +4,10 @@ body {
     background-color: #f8f8f8;
 }
 
+section {
+    padding: 50px 0;
+}
+
 h2 {
     margin-bottom: 30px;
     color: #3C486B;
@@ -45,6 +49,30 @@ label {
     --bs-btn-disabled-color: #F0F0F0;
     --bs-btn-disabled-bg: #F45050;
     --bs-btn-disabled-border-color: #F45050;
+}
+
+.outline-red-button {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+
+    --bs-btn-color: #F45050;
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: #F45050;
+    --bs-btn-hover-color: #F0F0F0;
+    --bs-btn-hover-bg: #E63E3E;
+    --bs-btn-hover-border-color: #DB3939;
+    --bs-btn-focus-shadow-rgb: 244,80,80;
+    --bs-btn-active-color: #F0F0F0;
+    --bs-btn-active-bg: #DB3939;
+    --bs-btn-active-border-color: #D43434;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #F0F0F0;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #F45050;
+    border: 2px solid #F45050;
+    background-color: transparent;
+    color: #F45050;
+    padding: 8px;
 }
 
 .blue-button {
@@ -271,16 +299,15 @@ nav.navbar ul li a:hover {
   }
 }
 
-.cta-button {
+#hero .cta-button {
     margin: 3rem auto 0.5rem;
+}
+
+.cta-button {
     width: 10rem;
 }
 
 /* About Me Section */
-#about {
-    padding: 50px 0;
-}
-
 #about .lead {
     font-size: 26px;
 }
@@ -306,21 +333,34 @@ nav.navbar ul li a:hover {
     padding: 50px 0;
 }
 
-#portfolio h2 {
-    margin-bottom: 30px;
-}
-
-.card {
+#portfolio-tabs .nav-link {
+    padding: 0.5rem 1.5rem;
+    font-size: 22px;
+    color: #343a40;
+    background-color: transparent;
     border: none;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+#portfolio-tabs .nav-link:hover,
+#portfolio-tabs .nav-link.active {
+    color: #dc3545;
+    border-bottom-color: #dc3545;
+}
+
+#portfolio-tabs-content .card {
+    border: none;
+    transition: all 0.3s ease-in-out;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
 }
 
-.card:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+#portfolio-tabs-content .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.card-img-top {
+#portfolio-tabs-content .card-img-top {
     height: 200px;
     object-fit: cover;
 }
@@ -385,5 +425,5 @@ footer p {
 /* Login Section */
 .login{
     min-height: 17rem;
-    margin: 120px auto 50px;
+    margin: 100px auto 50px;
 }

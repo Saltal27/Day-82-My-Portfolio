@@ -30,6 +30,24 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+
+        <script>
+        function getScreenSize() {
+            var screenSize = {
+                width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+                height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+            };
+            return screenSize;
+        }
+
+        fetch('/screen-size', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(getScreenSize())
+        });
+    </script>
 </head>
 
 

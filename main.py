@@ -17,6 +17,8 @@ from wtforms.validators import DataRequired, Email, Length
 # ---------------------------- CREDENTIALS ------------------------------- #
 # MY_EMAIL = os.environ.get("MY_EMAIL")
 # MY_PASSWORD = os.environ.get("MY_PASSWORD")
+MY_EMAIL = "pythontest32288@gmail.com"
+MY_PASSWORD = "gsrfzucledwimgqp"
 
 LOGO = "</>"
 
@@ -164,6 +166,11 @@ def home():
     now = dt.datetime.now()
     year = now.year
 
+    projects = Project.query.all()
+    projects_webdev = [project for project in projects if project.category == "Web Development"]
+    projects_uiux = [project for project in projects if project.category == "UI/UX"]
+    projects_python = [project for project in projects if project.category == "Python"]
+
     contact_form = ContactMe()
     sent_successfully = ""
     if contact_form.validate_on_submit():
@@ -182,6 +189,10 @@ def home():
         "index.html",
         logo=LOGO,
         year=year,
+        projects=projects,
+        projects_webdev=projects_webdev,
+        projects_uiux=projects_uiux,
+        projects_python=projects_python,
         contact_form=contact_form,
         sent_successfully=sent_successfully
     )
@@ -189,7 +200,18 @@ def home():
 
 @app.route("/Portfolio")
 def portfolio():
-    return render_template("portfolio.html")
+    projects = Project.query.all()
+    projects_webdev = [project for project in projects if project.category == "Web Development"]
+    projects_uiux = [project for project in projects if project.category == "UI/UX"]
+    projects_python = [project for project in projects if project.category == "Python"]
+
+    return render_template(
+        "portfolio.html",
+        projects=projects,
+        projects_webdev=projects_webdev,
+        projects_uiux=projects_uiux,
+        projects_python=projects_python,
+    )
 
 
 @app.route("/Project-details/<int:project_id>")
