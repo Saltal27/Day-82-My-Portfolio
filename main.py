@@ -17,8 +17,6 @@ from wtforms.validators import DataRequired, Email, Length
 # ---------------------------- CREDENTIALS ------------------------------- #
 # MY_EMAIL = os.environ.get("MY_EMAIL")
 # MY_PASSWORD = os.environ.get("MY_PASSWORD")
-MY_EMAIL = "pythontest32288@gmail.com"
-MY_PASSWORD = "gsrfzucledwimgqp"
 
 LOGO = "</>"
 
