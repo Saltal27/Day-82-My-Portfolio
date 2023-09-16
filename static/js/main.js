@@ -2,10 +2,10 @@
 AOS.init();
 
 
-// Smooth scrolling for logo and CTA button
+// Smooth scrolling for logo, CTA button and portfolio tabs on the home page
 $(document).ready(function() {
     if (window.location.pathname === '/') {
-        $("a.logo, a.cta-button").on('click', function(event) {
+        $("a.logo, a.cta-button, a.tab-link").on('click', function(event) {
             if (this.hash !== "") {
                 event.preventDefault();
 
@@ -22,14 +22,14 @@ $(document).ready(function() {
 });
 
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links on the home page
   if (window.matchMedia('(max-width: 768px)').matches) {
     const toggleButton = document.getElementById('toggleButton');
   }
 
 $(document).ready(function() {
     if (window.location.pathname === '/') {
-        $("a.nav-link").on('click', function(event) {
+        $("a.nav-link.scrollto").on('click', function(event) {
             if (this.hash !== "") {
                 event.preventDefault();
 
@@ -117,7 +117,7 @@ $('#portfolio-tabs a').on('click', function (e) {
 });
 
 
-// Smooth scrolling for Portfolio navlinks
+// Smooth scrolling for Portfolio navlinks on the portfolio page
 $(document).ready(function() {
     if (window.location.pathname === '/Portfolio') {
         $("#portfolio-tabs a").on('click', function(event) {
