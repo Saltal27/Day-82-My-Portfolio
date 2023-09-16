@@ -1,6 +1,6 @@
 /* Global Styles */
 body {
-    font-family: 'Lato', sans-serif;;
+    font-family: 'Lato', sans-serif;
     background-color: #f8f8f8;
 }
 
@@ -366,45 +366,24 @@ nav.navbar ul li a:hover {
 .skill-container {
   display: flex;
   flex-wrap: wrap;
-  text-align: left;
   justify-content: space-between;
+  text-align: center;
 }
 
 .skill {
   width: 45%;
-  margin-bottom: 30px;
+  margin: 30px;
 }
 
 .skill p {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  position: relative;
 }
 
 .skill-bar {
-  height: 10px;
-  background-color: white;
-}
-
-.skill-progress {
-  height: 100%;
-  background-color: #F45050;
-  transition: width 1s ease;
-}
-
-.progress-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background:
-    radial-gradient(closest-side, white 79%, transparent 80% 100%),
-    conic-gradient(#E63E3E 75%, #F45050 0);
-}
-
-.progress-bar::before {
-  content: "75%";
+  width: 150px;
+  height: 150px;
+  position: relative;
 }
 
 @media (max-width: 768px) {

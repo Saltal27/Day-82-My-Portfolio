@@ -147,23 +147,81 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+
+
+
+//function skillProgressAnimation(entries) {
+//  entries.forEach(function(entry) {
+//    if (entry.isIntersecting) {
+//      var skillProgress = entry.target.querySelectorAll(".skill-progress");
+//      skillProgress.forEach(function(progress) {
+//        var width = progress.style.width;
+//        progress.style.width = "0%";
+//        setTimeout(function() {
+//          progress.style.width = width;
+//        }, 1000);
+//      });
+//    }
+//  });
+//}
+//
+//var observer = new IntersectionObserver(skillProgressAnimation, { threshold: 0.5 });
+//
+//var section = document.querySelector("#skills");
+//observer.observe(section);
+
 // Skills bar animation
-function skillProgressAnimation(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      var skillProgress = entry.target.querySelectorAll(".skill-progress");
-      skillProgress.forEach(function(progress) {
-        var width = progress.style.width;
-        progress.style.width = "0%";
-        setTimeout(function() {
-          progress.style.width = width;
-        }, 1000);
-      });
+function initProgressBar(barId, progress) {
+  var bar = document.getElementById(barId);
+
+  var p_bar = new ProgressBar.Circle(bar, {
+    color: '#3C486B',
+    strokeWidth: 7,
+    trailWidth: 2,
+    easing: 'easeInOut',
+    duration: 1400,
+    text: {
+      autoStyleContainer: false
+    },
+    from: { color: '#aaa', width: 2 },
+    to: { color: '#F45050', width: 7 },
+    step: function(state, circle) {
+      circle.path.setAttribute('stroke', state.color);
+      circle.path.setAttribute('stroke-width', state.width);
+
+      var value = Math.round(circle.value() * 100);
+      if (value === 0) {
+        circle.setText('');
+      } else {
+        circle.setText(value+"%");
+      }
     }
   });
+
+  p_bar.text.style.fontFamily = "'Nunito', sans-serif";
+  p_bar.text.style.fontSize = '1.7rem';
+
+  function animateProgressBar(entries, observer, progressBar) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        progressBar.animate(progress);
+      } else {
+        progressBar.set(0); // Reset the progress bar if it's not intersecting
+      }
+    });
+  }
+
+  var observer = new IntersectionObserver(function(entries, observer) {
+    animateProgressBar(entries, observer, p_bar);
+  }, { threshold: 0.2 });
+
+  var section = document.querySelector("#" + barId);
+  observer.observe(section);
 }
 
-var observer = new IntersectionObserver(skillProgressAnimation, { threshold: 0.5 });
-
-var section = document.querySelector("#skills");
-observer.observe(section);
+// Call the function for each progress bar
+initProgressBar("pythonBar", 0.92);
+initProgressBar("flaskBar", 0.87);
+initProgressBar("htmlBar", 0.83);
+initProgressBar("cssBar", 0.89);
+initProgressBar("jsBar", 0.79);
