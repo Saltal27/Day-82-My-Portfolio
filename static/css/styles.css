@@ -136,6 +136,11 @@ label {
     text-align: center;
 }
 
+
+.lead {
+    font-size: 26px;
+}
+
 .text-center {
     text-align: center;
 }
@@ -330,13 +335,10 @@ nav.navbar ul li a:hover {
     width: 10rem;
 }
 
+
 /* About Me Section */
 #about span {
     color: #EA5455;
-}
-
-#about .lead {
-    font-size: 26px;
 }
 
 .about-txt {
@@ -354,6 +356,62 @@ nav.navbar ul li a:hover {
   }
 }
 
+
+/* Skills Section */
+#skills {
+  padding: 50px;
+  transition: opacity 0.5s ease;
+}
+
+.skill-container {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.skill {
+  width: 45%;
+  margin-bottom: 30px;
+}
+
+.skill p {
+  margin-bottom: 10px;
+}
+
+.skill-bar {
+  height: 10px;
+  background-color: white;
+}
+
+.skill-progress {
+  height: 100%;
+  background-color: #F45050;
+  transition: width 1s ease;
+}
+
+.progress-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(#E63E3E 75%, #F45050 0);
+}
+
+.progress-bar::before {
+  content: "75%";
+}
+
+@media (max-width: 768px) {
+  .skill {
+    width: 100% !important;
+  }
+}
 
 /* Portfolio Section */
 #portfolio {
@@ -520,6 +578,6 @@ footer p {
   height: 30px;
 }
 
-#about, #contact {
+#skills, #contact {
     background: #ECECEC;
 }

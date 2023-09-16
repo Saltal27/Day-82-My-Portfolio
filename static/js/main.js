@@ -137,6 +137,7 @@ $(document).ready(function() {
 });
 
 
+// Portfolio project images carousel animation
 document.addEventListener('DOMContentLoaded', function () {
   var carousel = new bootstrap.Carousel(document.getElementById('portfolioCarousel'), {
     interval: 3000,
@@ -144,3 +145,25 @@ document.addEventListener('DOMContentLoaded', function () {
     keyboard: true
   });
 });
+
+
+// Skills bar animation
+function skillProgressAnimation(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var skillProgress = entry.target.querySelectorAll(".skill-progress");
+      skillProgress.forEach(function(progress) {
+        var width = progress.style.width;
+        progress.style.width = "0%";
+        setTimeout(function() {
+          progress.style.width = width;
+        }, 1000);
+      });
+    }
+  });
+}
+
+var observer = new IntersectionObserver(skillProgressAnimation, { threshold: 0.5 });
+
+var section = document.querySelector("#skills");
+observer.observe(section);

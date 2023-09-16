@@ -37,9 +37,11 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                      src="{{ url_for('static', filename='img/profile-img.jpg') }}">
             </div>
             <div class="col-lg-6 about-txt">
-                <p class="lead">I am a <span><em>Python Developer</em></span> and <span><em>UI/UX Designer</em></span> with expertise in Flask, HTML, CSS, and
+                <p class="lead">I am a <span><em>Python Developer</em></span> and <span><em>UI/UX Designer</em></span>
+                    with expertise in Flask, HTML, CSS, and
                     JavaScript. I have a passion for creating visually appealing and user-friendly web applications.</p>
-                <p>Regarding my education, I am currently pursuing a degree in <span><em>Medicine</em></span> at Damascus University.
+                <p>Regarding my education, I am currently pursuing a degree in <span><em>Medicine</em></span> at
+                    Damascus University.
                     Although I do not possess a formal qualification in Computer Science, I have a keen interest in
                     programming and design.
                     I have actively worked on personal projects, gaining practical experience in developing attractive
@@ -52,6 +54,48 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
 </section>
 <!-- End About Section -->
 
+<!-- ======= Skills Section ======= -->
+<section class="py-5" id="skills">
+    <div class="container">
+        <h2>Skills</h2>
+        <p>Areas of Expertise and Technical Specializations:</p>
+        <div class="skill-container">
+            <div class="skill">
+                <p class="lead">Python</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p class="lead">Flask</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p class="lead">HTML</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p class="lead">CSS</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="skill">
+                <p class="lead">JavaScript</p>
+                <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Skills Section -->
+
+
 <!-- ======= Portfolio Section ======= -->
 <section class="py-5" id="portfolio">
     <div class="container">
@@ -59,20 +103,24 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
         <p>Unlocking creativity through thoughtful design and user-centric experiences!</p>
         <ul class="nav nav-pills justify-content-center mb-4" id="portfolio-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link tab-link active" id="all-tab" data-toggle="pill" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
+                <a aria-controls="all" aria-selected="true" class="nav-link tab-link active" data-toggle="pill" href="#all"
+                   id="all-tab" role="tab">All</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link tab-link" id="webdev-tab" data-toggle="pill" href="#webdev" role="tab" aria-controls="webdev" aria-selected="false">Web Development</a>
+                <a aria-controls="webdev" aria-selected="false" class="nav-link tab-link" data-toggle="pill" href="#webdev"
+                   id="webdev-tab" role="tab">Web Development</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link tab-link" id="uiux-tab" data-toggle="pill" href="#uiux" role="tab" aria-controls="uiux" aria-selected="false">UI/UX Design</a>
+                <a aria-controls="uiux" aria-selected="false" class="nav-link tab-link" data-toggle="pill" href="#uiux"
+                   id="uiux-tab" role="tab">UI/UX Design</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link tab-link" id="python-tab" data-toggle="pill" href="#python" role="tab" aria-controls="python" aria-selected="false">Other Python Projects</a>
+                <a aria-controls="python" aria-selected="false" class="nav-link tab-link" data-toggle="pill" href="#python"
+                   id="python-tab" role="tab">Other Python Projects</a>
             </li>
         </ul>
         <div class="tab-content" id="portfolio-tabs-content">
-            <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            <div aria-labelledby="all-tab" class="tab-pane fade show active" id="all" role="tabpanel">
                 <div class="row justify-content-center">
                     {% if not current_user.is_authenticated %}
                     {% set projects = online_projects %}
@@ -80,18 +128,20 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                     {% for project in projects[-1:-7:-1] %}
                     <div class="col-lg-4 col-10 mb-4">
                         <div class="card">
-                            <img alt="{{ project.title }}" class="card-img-top" src="{{ project.imgs_urls.split(', ')[0] }}">
+                            <img alt="{{ project.title }}" class="card-img-top"
+                                 src="{{ project.imgs_urls.split(', ')[0] }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-title">{{ project.title }}</p>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button" href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
+                                <a class="btn outline-red-button"
+                                   href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <div class="tab-pane fade" id="webdev" role="tabpanel" aria-labelledby="webdev-tab">
+            <div aria-labelledby="webdev-tab" class="tab-pane fade" id="webdev" role="tabpanel">
                 <div class="row justify-content-center">
                     {% if not current_user.is_authenticated %}
                     {% set projects_webdev = online_projects_webdev %}
@@ -99,18 +149,20 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                     {% for project in projects_webdev[-1:-7:-1] %}
                     <div class="col-lg-4 mb-4">
                         <div class="card">
-                            <img alt="{{ project.title }}" class="card-img-top" src="{{ project.imgs_urls.split(', ')[0] }}">
+                            <img alt="{{ project.title }}" class="card-img-top"
+                                 src="{{ project.imgs_urls.split(', ')[0] }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-title">{{ project.title }}</p>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button" href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
+                                <a class="btn outline-red-button"
+                                   href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <div class="tab-pane fade" id="uiux" role="tabpanel" aria-labelledby="uiux-tab">
+            <div aria-labelledby="uiux-tab" class="tab-pane fade" id="uiux" role="tabpanel">
                 <div class="row justify-content-center">
                     {% if not current_user.is_authenticated %}
                     {% set projects_uiux = online_projects_uiux %}
@@ -118,18 +170,20 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                     {% for project in projects_uiux[-1:-7:-1] %}
                     <div class="col-lg-4 mb-4">
                         <div class="card">
-                            <img alt="{{ project.title }}" class="card-img-top" src="{{ project.imgs_urls.split(', ')[0] }}">
+                            <img alt="{{ project.title }}" class="card-img-top"
+                                 src="{{ project.imgs_urls.split(', ')[0] }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-title">{{ project.title }}</p>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button" href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
+                                <a class="btn outline-red-button"
+                                   href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <div class="tab-pane fade" id="python" role="tabpanel" aria-labelledby="python-tab">
+            <div aria-labelledby="python-tab" class="tab-pane fade" id="python" role="tabpanel">
                 <div class="row justify-content-center">
                     {% if not current_user.is_authenticated %}
                     {% set projects_python= online_projects_python %}
@@ -137,11 +191,13 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                     {% for project in projects_python[-1:-7:-1] %}
                     <div class="col-lg-4 mb-4">
                         <div class="card">
-                            <img alt="{{ project.title }}" class="card-img-top" src="{{ project.imgs_urls.split(', ')[0] }}">
+                            <img alt="{{ project.title }}" class="card-img-top"
+                                 src="{{ project.imgs_urls.split(', ')[0] }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ project.title }}</h5>
+                                <p class="card-title">{{ project.title }}</p>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button" href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
+                                <a class="btn outline-red-button"
+                                   href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
                     </div>
@@ -152,7 +208,8 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
 
         {% if current_user.is_authenticated: %}
         <a class="btn cta-button red-button mx-2 my-2" href="{{ url_for('portfolio') }}" role="button">Show More</a>
-        <a class="btn cta-button outline-red-button mx-2 my-2" href="{{ url_for('add_new_project') }}" role="button">New Project</a>
+        <a class="btn cta-button outline-red-button mx-2 my-2" href="{{ url_for('add_new_project') }}" role="button">New
+            Project</a>
         {% else: %}
         <a class="btn cta-button red-button" href="{{ url_for('portfolio') }}" role="button">Show More</a>
         {% endif %}
@@ -161,7 +218,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
 <!-- End Portfolio Section -->
 
 <!-- ======= Contact Section ======= -->
-<section class="contact" id="contact">
+<section class="py-5 contact" id="contact">
     <div class="container">
         <div class="section-title">
             <h2>Contact Me</h2>
@@ -188,6 +245,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                                   window.addEventListener("beforeunload", function() {
                                     successMessage.remove();
                                   });
+
                     </script>
                     {% endif %}
                     <script>
@@ -195,6 +253,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                               window.addEventListener('load', function() {
                                 window.history.replaceState({}, document.title, window.location.pathname);
                               });
+
                     </script>
 
                     <div class="row">
@@ -229,7 +288,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                         {% endfor %}
                     </div>
                     <div class="text-center">
-                        {{ contact_form.submit(class="btn red-button  cta-button") }}
+                        {{ contact_form.submit(class="btn red-button cta-button") }}
                     </div>
                 </form>
             </div>
