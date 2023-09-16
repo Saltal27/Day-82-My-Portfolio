@@ -154,6 +154,15 @@ label {
     left: 0;
     width: 100%;
     z-index: 999;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.slide-up {
+  transform: translateY(-100%);
+}
+
+.slide-down {
+  transform: translateY(0);
 }
 
 #header .container {
@@ -509,4 +518,8 @@ footer p {
 .carousel-control-next-icon {
   width: 30px;
   height: 30px;
+}
+
+#about, #contact {
+    background: #ECECEC;
 }

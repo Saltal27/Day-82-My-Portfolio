@@ -2,10 +2,10 @@
 AOS.init();
 
 
-// Smooth scrolling for logo, navigation links, and CTA button
+// Smooth scrolling for logo and CTA button
 $(document).ready(function() {
     if (window.location.pathname === '/') {
-        $("a.logo, a.nav-link, a.cta-button").on('click', function(event) {
+        $("a.logo, a.cta-button").on('click', function(event) {
             if (this.hash !== "") {
                 event.preventDefault();
 
@@ -15,6 +15,36 @@ $(document).ready(function() {
                     scrollTop: $(hash).offset().top
                 }, 800, function(){
                     window.location.hash = hash;
+                });
+            }
+        });
+    }
+});
+
+
+// Smooth scrolling for navigation links
+  if (window.matchMedia('(max-width: 768px)').matches) {
+    const toggleButton = document.getElementById('toggleButton');
+  }
+
+$(document).ready(function() {
+    if (window.location.pathname === '/') {
+        $("a.nav-link").on('click', function(event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+
+                var hash = this.hash;
+
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 800, function(){
+                    window.location.hash = hash;
+                    if (window.matchMedia('(max-width: 768px)').matches) {
+                         toggleButton.click();
+                         toggleButton.classList.add('collapsed')
+                         toggleButton.classList.remove('toggle-active')
+                    }
+
                 });
             }
         });
@@ -41,6 +71,23 @@ const navbarlinksActive = () => {
 
 window.addEventListener('load', navbarlinksActive)
 window.addEventListener('scroll', navbarlinksActive)
+
+
+/* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
+var prevScrollpos = window.pageYOffset;
+var header = document.getElementById("header");
+
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    header.classList.remove("slide-up");
+    header.classList.add("slide-down");
+  } else {
+    header.classList.remove("slide-down");
+    header.classList.add("slide-up");
+  }
+  prevScrollpos = currentScrollPos;
+}
 
 
 // Toggle button animation
