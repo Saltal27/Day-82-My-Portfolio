@@ -65,35 +65,35 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                 <div class="col-lg-4 mx-auto">
                     <div class="skill mx-auto">
                         <p class="lead">Python</p>
-                        <div id="pythonBar" class="skill-bar mx-auto"></div>
+                        <div class="skill-bar mx-auto" id="pythonBar"></div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 mx-auto">
                     <div class="skill mx-auto">
                         <p class="lead">Flask</p>
-                        <div id="flaskBar" class="skill-bar mx-auto"></div>
+                        <div class="skill-bar mx-auto" id="flaskBar"></div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 mx-auto">
                     <div class="skill mx-auto">
                         <p class="lead">HTML</p>
-                        <div id="htmlBar" class="skill-bar mx-auto"></div>
+                        <div class="skill-bar mx-auto" id="htmlBar"></div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 mx-auto">
                     <div class="skill mx-auto">
                         <p class="lead">CSS</p>
-                        <div id="cssBar" class="skill-bar mx-auto"></div>
+                        <div class="skill-bar mx-auto" id="cssBar"></div>
                     </div>
                 </div>
 
                 <div class="col-lg-4 mx-auto">
                     <div class="skill mx-auto">
                         <p class="lead">JavaScript</p>
-                        <div id="jsBar" class="skill-bar mx-auto"></div>
+                        <div class="skill-bar mx-auto" id="jsBar"></div>
                     </div>
                 </div>
 
@@ -111,11 +111,13 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
         <p>Unlocking creativity through thoughtful design and user-centric experiences!</p>
         <ul class="nav nav-pills justify-content-center mb-4" id="portfolio-tabs" role="tablist">
             <li class="nav-item">
-                <a aria-controls="all" aria-selected="true" class="nav-link tab-link active" data-toggle="pill" href="#all"
+                <a aria-controls="all" aria-selected="true" class="nav-link tab-link active" data-toggle="pill"
+                   href="#all"
                    id="all-tab" role="tab">All</a>
             </li>
             <li class="nav-item">
-                <a aria-controls="webdev" aria-selected="false" class="nav-link tab-link" data-toggle="pill" href="#webdev"
+                <a aria-controls="webdev" aria-selected="false" class="nav-link tab-link" data-toggle="pill"
+                   href="#webdev"
                    id="webdev-tab" role="tab">Web Development</a>
             </li>
             <li class="nav-item">
@@ -123,7 +125,8 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                    id="uiux-tab" role="tab">UI/UX Design</a>
             </li>
             <li class="nav-item">
-                <a aria-controls="python" aria-selected="false" class="nav-link tab-link" data-toggle="pill" href="#python"
+                <a aria-controls="python" aria-selected="false" class="nav-link tab-link" data-toggle="pill"
+                   href="#python"
                    id="python-tab" role="tab">Other Python Projects</a>
             </li>
         </ul>
@@ -225,6 +228,36 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
 </section>
 <!-- End Portfolio Section -->
 
+
+<!--&lt;!&ndash; ======= Testimonials Section ======= &ndash;&gt;-->
+<!--<section class="py-5" id="testimonials">-->
+<!--    <div class="container">-->
+<!--        <h2 class="text-center">Testimonials</h2>-->
+<!--        <p>Client success stories that speak volumes!</p>-->
+
+<!--        <div class="content-wrapper mx-auto">-->
+<!--            <div class="wrapper-for-arrows">-->
+<!--                <div id="reviewWrap" class="review-wrap">-->
+<!--                    <div id="imgDiv" class="">-->
+<!--                    </div>-->
+<!--                    <div id="personName"></div>-->
+<!--                    <a href="#" id="profession"></a>-->
+<!--                    <div id="description">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="left-arrow-wrap arrow-wrap">-->
+<!--                    <div class="arrow" id="leftArrow"></div>-->
+<!--                </div>-->
+<!--                <div class="right-arrow-wrap arrow-wrap">-->
+<!--                    <div class="arrow" id="rightArrow"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+<!--&lt;!&ndash; End Testimonials Section &ndash;&gt;-->
+
+
 <!-- ======= Contact Section ======= -->
 <section class="py-5 contact" id="contact">
     <div class="container">
@@ -237,8 +270,8 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
         </div>
 
         <div class="row" data-aos="fade-in">
-            <div class="col-lg-7 mt-2 mb-3 d-flex align-items-stretch mx-auto" style="text-align: left;">
-                <form action="{{ url_for('home') }}#contact" class="flask-WTForm" method="POST" novalidate>
+            <div class="col-lg-10 mt-2 mb-3 d-flex align-items-stretch justify-content-center mx-auto">
+                <form style="text-align: left;" action="{{ url_for('home') }}#contact" class="flask-WTForm" method="POST" novalidate>
                     {{ contact_form.hidden_tag() }}
                     {% if sent_successfully %}
                     <span id="success-message"
@@ -254,6 +287,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                                     successMessage.remove();
                                   });
 
+
                     </script>
                     {% endif %}
                     <script>
@@ -261,6 +295,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                               window.addEventListener('load', function() {
                                 window.history.replaceState({}, document.title, window.location.pathname);
                               });
+
 
                     </script>
 

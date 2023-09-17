@@ -225,3 +225,110 @@ initProgressBar("flaskBar", 0.87);
 initProgressBar("htmlBar", 0.83);
 initProgressBar("cssBar", 0.89);
 initProgressBar("jsBar", 0.79);
+
+
+// Testimonials carousel
+const reviewWrap = document.getElementById("reviewWrap");
+const leftArrow = document.getElementById("leftArrow");
+const rightArrow = document.getElementById("rightArrow");
+const imgDiv = document.getElementById("imgDiv");
+const personName = document.getElementById("personName");
+const profession = document.getElementById("profession");
+const description = document.getElementById("description");
+const surpriseMeBtn = document.getElementById("surpriseMeBtn");
+
+let people = [
+	{
+		photo:
+			"url('')",
+		name: "",
+		profession: "",
+		professionLink: "",
+		description:
+		    ""
+	}
+];
+
+imgDiv.style.backgroundImage = people[0].photo;
+personName.innerText = people[0].name;
+profession.innerText = people[0].profession;
+profession.setAttribute("href", people[0].professionLink);
+description.innerText = people[0].description;
+let currentPerson = 0;
+
+//Select the side where you want to slide
+function slide(whichSide, personNumber) {
+	let reviewWrapWidth = reviewWrap.offsetWidth + "px";
+	let descriptionHeight = description.offsetHeight + "px";
+	//(+ or -)
+	let side1symbol = whichSide === "left" ? "" : "-";
+	let side2symbol = whichSide === "left" ? "-" : "";
+
+	let tl = gsap.timeline();
+
+	tl.to(reviewWrap, {
+		duration: 0.4,
+		opacity: 0,
+		translateX: `${side1symbol + reviewWrapWidth}`
+	});
+
+	tl.to(reviewWrap, {
+		duration: 0,
+		translateX: `${side2symbol + reviewWrapWidth}`
+	});
+
+	setTimeout(() => {
+		imgDiv.style.backgroundImage = people[personNumber].photo;
+	}, 400);
+	setTimeout(() => {
+		description.style.height = descriptionHeight;
+	}, 400);
+	setTimeout(() => {
+		personName.innerText = people[personNumber].name;
+	}, 400);
+    setTimeout(() => {
+      profession.setAttribute("href", people[personNumber].professionLink);
+    }, 400);
+	setTimeout(() => {
+		profession.href = people[personNumber].url;
+	}, 400);
+	setTimeout(() => {
+		description.innerText = people[personNumber].description;
+	}, 400);
+
+	tl.to(reviewWrap, {
+		duration: 0.4,
+		opacity: 1,
+		translateX: 0
+	});
+
+}
+
+function setNextCardLeft() {
+	if (currentPerson === 3) {
+		currentPerson = 0;
+		slide("left", currentPerson);
+	} else {
+		currentPerson++;
+	}
+
+	slide("left", currentPerson);
+}
+
+function setNextCardRight() {
+	if (currentPerson === 0) {
+		currentPerson = 3;
+		slide("right", currentPerson);
+	} else {
+		currentPerson--;
+	}
+
+	slide("right", currentPerson);
+}
+
+leftArrow.addEventListener("click", setNextCardLeft);
+rightArrow.addEventListener("click", setNextCardRight);
+
+window.addEventListener("resize", () => {
+	description.style.height = "100%";
+});

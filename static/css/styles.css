@@ -357,6 +357,7 @@ nav.navbar ul li a:hover {
 }
 
 
+
 /* Skills Section */
 #skills {
   padding: 50px;
@@ -391,6 +392,8 @@ nav.navbar ul li a:hover {
     width: 100% !important;
   }
 }
+
+
 
 /* Portfolio Section */
 #portfolio {
@@ -439,6 +442,120 @@ nav.navbar ul li a:hover {
     color: #777;
 }
 
+
+
+/* Testimonials Section */
+.content-wrapper {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper-for-arrows {
+  position: relative;
+  width: 100%;
+}
+
+.review-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#imgDiv {
+  border-radius: 50%;
+  width: 184px;
+  height: 184px;
+  position: relative;
+  background-size: cover;
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+#personName {
+  margin-bottom: 10px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#profession {
+  font-size: 20px;
+  margin-bottom: 22px;
+  color: #F45050;
+  text-decoration: none;
+}
+
+#profession:hover {
+  color: #3C486B;
+}
+
+#description {
+  font-size: 20px;
+  width: 70%;
+  max-width: 918px;
+  text-align: center;
+  color: rgb(92, 92, 92);
+  line-height: 49px;
+}
+
+.arrow-wrap {
+  position: absolute;
+  top: 50%;
+}
+
+.arrow {
+  width: 38px;
+  height: 38px;
+  border: solid #F45050;
+  border-width: 0 13px 13px 0;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.arrow:hover {
+  transition: 0.3s;
+  transform: scale(1.15);
+}
+
+.left-arrow-wrap {
+  left: 5%;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.right-arrow-wrap {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  right: 5%;
+}
+
+.move-head {
+  animation: moveHead 1.55s infinite;
+  animation-delay: -0.8s;
+}
+
+@keyframes moveHead {
+  0% {
+  }
+  25% {
+    transform: translate(0.5rem, 1rem) rotate(5deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(-5deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content-wrapper {
+    width: 100%;
+  }
+}
+
+
+
 /* Contact Me Section */
 #contact-me {
     padding: 50px 0;
@@ -455,6 +572,8 @@ nav.navbar ul li a:hover {
 .flask-WTForm label {
   padding-bottom: 8px;
 }
+
+
 
 /* Footer Section */
 footer {
@@ -482,8 +601,9 @@ footer p {
 }
 
 .footer-links a:hover i {
-    color: #F9D949;
+    color: #F45050;
 }
+
 
 
 /* Project Details */
@@ -512,17 +632,25 @@ footer p {
   background-image: none;
 }
 
-.carousel-control-next-icon:after
-{
+.carousel-control-next-icon:after {
   content: '>';
-  font-size: 55px;
-  color: #3C486B;
 }
 
 .carousel-control-prev-icon:after {
   content: '<';
-  font-size: 55px;
-  color: #3C486B;
+}
+
+.carousel-control-next-icon:after, .carousel-control-prev-icon:after
+{
+  font-size: 70px;
+  font-weight: bold;
+  color: #F45050;
+}
+
+.carousel-control-next-icon:hover, .carousel-control-prev-icon:hover
+{
+  transition: 0.3s;
+  transform: scale(1.15);
 }
 
 .carousel-item {
