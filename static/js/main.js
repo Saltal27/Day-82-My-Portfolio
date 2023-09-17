@@ -235,7 +235,6 @@ const imgDiv = document.getElementById("imgDiv");
 const personName = document.getElementById("personName");
 const profession = document.getElementById("profession");
 const description = document.getElementById("description");
-const surpriseMeBtn = document.getElementById("surpriseMeBtn");
 
 let people = [
 	{
@@ -332,3 +331,16 @@ rightArrow.addEventListener("click", setNextCardRight);
 window.addEventListener("resize", () => {
 	description.style.height = "100%";
 });
+
+function startTimer() {
+  timer = setInterval(setNextCardRight, 3000);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+}
+
+reviewWrap.addEventListener('mouseenter', stopTimer);
+reviewWrap.addEventListener('mouseleave', startTimer);
+
+startTimer();
