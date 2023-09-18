@@ -147,29 +147,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-
-//function skillProgressAnimation(entries) {
-//  entries.forEach(function(entry) {
-//    if (entry.isIntersecting) {
-//      var skillProgress = entry.target.querySelectorAll(".skill-progress");
-//      skillProgress.forEach(function(progress) {
-//        var width = progress.style.width;
-//        progress.style.width = "0%";
-//        setTimeout(function() {
-//          progress.style.width = width;
-//        }, 1000);
-//      });
-//    }
-//  });
-//}
-//
-//var observer = new IntersectionObserver(skillProgressAnimation, { threshold: 0.5 });
-//
-//var section = document.querySelector("#skills");
-//observer.observe(section);
-
 // Skills bar animation
 function initProgressBar(barId, progress) {
   var bar = document.getElementById(barId);
@@ -231,23 +208,18 @@ initProgressBar("jsBar", 0.79);
 const reviewWrap = document.getElementById("reviewWrap");
 const leftArrow = document.getElementById("leftArrow");
 const rightArrow = document.getElementById("rightArrow");
+const testimonialId = document.getElementById("testimonialId");
 const imgDiv = document.getElementById("imgDiv");
 const personName = document.getElementById("personName");
 const profession = document.getElementById("profession");
 const description = document.getElementById("description");
+const editTestimonial = document.getElementById('editTestimonial');
+const deleteTestimonial = document.getElementById('deleteTestimonial');
 
-let people = [
-	{
-		photo:
-			"url('')",
-		name: "",
-		profession: "",
-		professionLink: "",
-		description:
-		    ""
-	}
-];
+console.log("testimonialsList");
+let people = testimonialsList;
 
+testimonialId.innerText = people[0].id;
 imgDiv.style.backgroundImage = people[0].photo;
 personName.innerText = people[0].name;
 profession.innerText = people[0].profession;
@@ -277,6 +249,9 @@ function slide(whichSide, personNumber) {
 	});
 
 	setTimeout(() => {
+		testimonialId.innerText = people[personNumber].id;
+	}, 400);
+	setTimeout(() => {
 		imgDiv.style.backgroundImage = people[personNumber].photo;
 	}, 400);
 	setTimeout(() => {
@@ -285,44 +260,54 @@ function slide(whichSide, personNumber) {
 	setTimeout(() => {
 		personName.innerText = people[personNumber].name;
 	}, 400);
+	setTimeout(() => {
+		profession.innerText = people[personNumber].profession;
+	}, 400);
     setTimeout(() => {
       profession.setAttribute("href", people[personNumber].professionLink);
     }, 400);
-	setTimeout(() => {
-		profession.href = people[personNumber].url;
-	}, 400);
-	setTimeout(() => {
-		description.innerText = people[personNumber].description;
-	}, 400);
+  setTimeout(() => {
+    description.innerText = people[personNumber].description;
+    adjustSectionHeight();
+  }, 400);
+
+if (editTestimonial) {
+  editTestimonial.addEventListener('click', () => {
+    console.log(people[personNumber].id);
+    window.location.href = '/edit-testimonial/' + people[personNumber].id;
+  });
+}
+
+if (editTestimonial) {
+  deleteTestimonial.addEventListener('click', () => {
+      console.log(people[personNumber].id);
+      window.location.href = '/delete-testimonial/' + people[personNumber].id;
+  });
+}
+
 
 	tl.to(reviewWrap, {
-		duration: 0.4,
+		duration: 1,
 		opacity: 1,
 		translateX: 0
 	});
 
 }
 
-function setNextCardLeft() {
-	if (currentPerson === 3) {
-		currentPerson = 0;
-		slide("left", currentPerson);
-	} else {
-		currentPerson++;
-	}
+function adjustSectionHeight() {
+  description.style.height = "100%";
+}
 
-	slide("left", currentPerson);
+function setNextCardLeft() {
+  currentPerson = (currentPerson - 1 + people.length) % people.length;
+  slide("left", currentPerson);
+  adjustSectionHeight();
 }
 
 function setNextCardRight() {
-	if (currentPerson === 0) {
-		currentPerson = 3;
-		slide("right", currentPerson);
-	} else {
-		currentPerson--;
-	}
-
-	slide("right", currentPerson);
+  currentPerson = (currentPerson + 1) % people.length;
+  slide("right", currentPerson);
+  adjustSectionHeight();
 }
 
 leftArrow.addEventListener("click", setNextCardLeft);
@@ -332,8 +317,11 @@ window.addEventListener("resize", () => {
 	description.style.height = "100%";
 });
 
+window.addEventListener("resize", adjustSectionHeight);
+window.addEventListener("load", adjustSectionHeight);
+
 function startTimer() {
-  timer = setInterval(setNextCardRight, 3000);
+  timer = setInterval(setNextCardLeft, 4000);
 }
 
 function stopTimer() {
@@ -344,3 +332,4 @@ reviewWrap.addEventListener('mouseenter', stopTimer);
 reviewWrap.addEventListener('mouseleave', startTimer);
 
 startTimer();
+setInterval(adjustSectionHeight, 100);

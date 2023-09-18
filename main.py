@@ -49,8 +49,18 @@ class AddProjectForm(FlaskForm):
     role = StringField("Role", validators=[DataRequired()])
     links = StringField("Links")
     links_texts = StringField("Links Texts")
-    status = StringField("Status")
+    status = StringField("Status", validators=[DataRequired()])
     submit = SubmitField("Submit Project", validators=[DataRequired()])
+
+
+class AddTestimonialForm(FlaskForm):
+    photo = StringField("Photo", validators=[DataRequired()])
+    name = StringField("Project Subtitle", validators=[DataRequired()])
+    profession = StringField("Profession", validators=[DataRequired()])
+    profession_link = StringField("Profession Link", validators=[DataRequired()])
+    description = StringField("Description", validators=[DataRequired()])
+    status = StringField("Status", validators=[DataRequired()])
+    submit = SubmitField("Submit Testimonial", validators=[DataRequired()])
 
 
 # ------------------ Initializing A Flask App With Some Extensions --------------------- #
@@ -114,6 +124,21 @@ class Project(db.Model):
 
     def __repr__(self):
         return f'<Project {self.title}>'
+
+
+# Testimonials table in db
+class Testimonial(db.Model):
+    __tablename__ = "testimonials"
+    id = db.Column(db.Integer, primary_key=True)
+    photo = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False)
+    profession = db.Column(db.String, nullable=False)
+    profession_link = db.Column(db.String, nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    status = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return f'<Testimonial {self.id}>'
 
 
 with app.app_context():
@@ -183,9 +208,31 @@ def home():
     online_projects_webdev = [project for project in online_projects if project.category == "Web Development"]
     online_projects_uiux = [project for project in online_projects if project.category == "UI/UX"]
     online_projects_python = [project for project in online_projects if project.category == "Python"]
-    print(online_projects_webdev)
-    print(projects_uiux)
 
+    testimonials_list = []
+    online_testimonials_list = []
+    testimonials = Testimonial.query.all()
+    online_testimonials = [testimonial for testimonial in testimonials if testimonial.status == "Online"]
+    for testimonial in testimonials:
+        testimonial_dict = {
+            "id": testimonial.id,
+            "photo": testimonial.photo,
+            "name": testimonial.name,
+            "profession": testimonial.profession,
+            "professionLink": testimonial.profession_link,
+            "description": testimonial.description
+        }
+        testimonials_list.append(testimonial_dict)
+    for testimonial in online_testimonials:
+        testimonial_dict = {
+            "id": testimonial.id,
+            "photo": testimonial.photo,
+            "name": testimonial.name,
+            "profession": testimonial.profession,
+            "professionLink": testimonial.profession_link,
+            "description": testimonial.description
+        }
+        online_testimonials_list.append(testimonial_dict)
 
     contact_form = ContactMe()
     sent_successfully = ""
@@ -213,6 +260,8 @@ def home():
         online_projects_webdev=online_projects_webdev,
         online_projects_uiux=online_projects_uiux,
         online_projects_python=online_projects_python,
+        testimonials_list=testimonials_list[::-1],
+        online_testimonials_list=online_testimonials_list[::-1],
         contact_form=contact_form,
         sent_successfully=sent_successfully
     )
@@ -313,29 +362,9 @@ def add_new_project():
 @login_required
 def edit_project(project_id):
     project = Project.query.get(project_id)
-    edit_form = AddProjectForm(
-        title=project.title,
-        subtitle=project.subtitle,
-        category=project.category,
-        description=project.description,
-        imgs_urls=project.imgs_urls,
-        technologies_used=project.technologies_used,
-        role=project.role,
-        links=project.links,
-        links_texts=project.links_texts,
-        status=project.status,
-    )
+    edit_form = AddProjectForm(obj=project)
     if edit_form.validate_on_submit():
-        project.title = edit_form.title.data
-        project.subtitle = edit_form.subtitle.data
-        project.category = edit_form.category.data
-        project.description = edit_form.description.data
-        project.imgs_urls = edit_form.imgs_urls.data
-        project.technologies_used = edit_form.technologies_used.data
-        project.role = edit_form.role.data
-        project.links = edit_form.links.data
-        project.links_texts = edit_form.links_texts.data
-        project.status = edit_form.status.data
+        edit_form.populate_obj(project)
         db.session.commit()
         return redirect(url_for("project_details", project_id=project.id))
 
@@ -347,6 +376,49 @@ def edit_project(project_id):
 def delete_project(project_id):
     project_to_delete = Project.query.get(project_id)
     db.session.delete(project_to_delete)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+
+@app.route("/new-testimonial", methods=["GET", "POST"])
+@login_required
+def add_new_testimonial():
+    add_form = AddTestimonialForm()
+    if add_form.validate_on_submit():
+        with app.app_context():
+            new_testimonial = Testimonial(
+                photo=add_form.photo.data,
+                name=add_form.name.data,
+                profession=add_form.profession.data,
+                profession_link=add_form.profession_link.data,
+                description=add_form.description.data,
+                status=add_form.status.data,
+            )
+            db.session.add(new_testimonial)
+            db.session.commit()
+        return redirect(url_for("home"))
+
+    return render_template("add-testimonial.html", form=add_form)
+
+
+@app.route("/edit-testimonial/<int:testimonial_id>", methods=["GET", "POST"])
+@login_required
+def edit_testimonial(testimonial_id):
+    testimonial = Testimonial.query.get(testimonial_id)
+    edit_form = AddTestimonialForm(obj=testimonial)
+    if edit_form.validate_on_submit():
+        edit_form.populate_obj(testimonial)
+        db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template("edit-testimonial.html", form=edit_form, testimonial=testimonial)
+
+
+@app.route("/delete-testimonial/<int:testimonial_id>")
+@login_required
+def delete_testimonial(testimonial_id):
+    testimonial_to_delete = Testimonial.query.get(testimonial_id)
+    db.session.delete(testimonial_to_delete)
     db.session.commit()
     return redirect(url_for('home'))
 
