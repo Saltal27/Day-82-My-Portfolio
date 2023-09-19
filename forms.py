@@ -42,4 +42,3 @@ class AddTestimonialForm(FlaskForm):
     description = StringField("Description", validators=[DataRequired()])
     status = StringField("Status", validators=[DataRequired()])
     submit = SubmitField("Submit Testimonial", validators=[DataRequired()])
-

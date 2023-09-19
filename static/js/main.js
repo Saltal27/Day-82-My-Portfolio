@@ -2,7 +2,8 @@
 AOS.init();
 
 
-// Smooth scrolling for logo, CTA button and portfolio tabs on the home page
+
+// Smooth scrolling for logo, CTA (hero) button and portfolio tabs on the home page
 $(document).ready(function() {
     if (window.location.pathname === '/') {
         $("a.logo, a.cta-button, a.tab-link").on('click', function(event) {
@@ -22,10 +23,11 @@ $(document).ready(function() {
 });
 
 
+
 // Smooth scrolling for navigation links on the home page
-  if (window.matchMedia('(max-width: 768px)').matches) {
-    const toggleButton = document.getElementById('toggleButton');
-  }
+if (window.matchMedia('(max-width: 768px)').matches) {
+  const toggleButton = document.getElementById('toggleButton');
+}
 
 $(document).ready(function() {
     if (window.location.pathname === '/') {
@@ -44,12 +46,12 @@ $(document).ready(function() {
                          toggleButton.classList.add('collapsed')
                          toggleButton.classList.remove('toggle-active')
                     }
-
                 });
             }
         });
     }
 });
+
 
 
 // Navbar links active state on scroll
@@ -73,6 +75,7 @@ window.addEventListener('load', navbarlinksActive)
 window.addEventListener('scroll', navbarlinksActive)
 
 
+
 /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
 var prevScrollpos = window.pageYOffset;
 var header = document.getElementById("header");
@@ -90,12 +93,14 @@ window.onscroll = function() {
 }
 
 
+
 // Toggle button animation
 const toggleButton = document.getElementById('toggleButton');
 
 toggleButton.addEventListener('click', function() {
   toggleButton.classList.toggle('toggle-active');
 });
+
 
 
 // Hero typing effect
@@ -110,11 +115,13 @@ toggleButton.addEventListener('click', function() {
     });
 
 
-// Portfolio Section
+
+// Portfolio tabs animation
 $('#portfolio-tabs a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
 });
+
 
 
 // Smooth scrolling for Portfolio navlinks on the portfolio page
@@ -137,6 +144,7 @@ $(document).ready(function() {
 });
 
 
+
 // Portfolio project images carousel animation
 document.addEventListener('DOMContentLoaded', function () {
   var carousel = new bootstrap.Carousel(document.getElementById('portfolioCarousel'), {
@@ -145,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
     keyboard: true
   });
 });
+
 
 
 // Skills bar animation
@@ -202,6 +211,7 @@ initProgressBar("flaskBar", 0.87);
 initProgressBar("htmlBar", 0.83);
 initProgressBar("cssBar", 0.89);
 initProgressBar("jsBar", 0.79);
+
 
 
 // Testimonials carousel
@@ -333,3 +343,5 @@ reviewWrap.addEventListener('mouseleave', startTimer);
 
 startTimer();
 setInterval(adjustSectionHeight, 100);
+
+

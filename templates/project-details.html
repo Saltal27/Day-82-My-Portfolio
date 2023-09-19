@@ -1,11 +1,5 @@
-{% with
-title=project.title,
-content="I am a Python developer and UI/UX designer with expertise in Flask, HTML, CSS, and JavaScript. I am passionate about creating visually appealing and user-friendly web applications. I am currently pursuing a degree in Medicine at Damascus University, and though I lack a formal qualification in Computer Science, I have a keen interest in programming and design. I have gained practical experience through personal projects, developing attractive and easy-to-use web applications. My goal is to combine my medical knowledge with programming skills to create innovative solutions in the healthcare industry.",
-keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web applications, Medicine, Damascus University, programming, design, personal projects, healthcare industry, innovative solutions."
-%}
-
+{% with title=project.title %}
 {% include "header.html" %}
-
 {% endwith %}
 
 <section class="py-5 solo_section">
@@ -19,15 +13,17 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
             <div class="carousel-inner justify-content-center">
                 {% for img_url in project.imgs_urls.split(', ') %}
                 <div class="carousel-item {% if loop.first %}active{% endif %}" data-bs-interval="3000">
-                  <img alt="{{ project.title }} img" class="carousel-image img-fluid" src="{{ img_url }}">
+                    <img alt="{{ project.title }} img" class="carousel-image img-fluid" src="{{ img_url }}">
                 </div>
                 {% endfor %}
             </div>
-            <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#portfolioCarousel" type="button">
+            <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#portfolioCarousel"
+                    type="button">
                 <span aria-hidden="true" class="carousel-control-prev-icon"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#portfolioCarousel" type="button">
+            <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#portfolioCarousel"
+                    type="button">
                 <span aria-hidden="true" class="carousel-control-next-icon"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -39,8 +35,8 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                 {% for paragraph in project.description.split('. ') %}
                 <p>{{ paragraph }}.</p>
                 {% endfor %}
-             </div>
-         </div>
+            </div>
+        </div>
 
         {% if project.technologies_used %}
         <h3>Technologies Used</h3>
@@ -51,22 +47,23 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
         <p>{{ project.role }}</p>
 
         {% if project.links %}
-            <h3>Links</h3>
-            {% for n in range(project.links.split(', ')|length) %}
-                <a class="mx-2" href="{{ project.links.split(', ')[n] }}">{{ project.links_texts.split(', ')[n] }}</a>
-            {% endfor %}
+        <h3>Links</h3>
+        {% for n in range(project.links.split(', ')|length) %}
+        <a class="mx-2" href="{{ project.links.split(', ')[n] }}">{{ project.links_texts.split(', ')[n] }}</a>
+        {% endfor %}
         {% endif %}
 
         <div class="mt-5">
             {% if current_user.is_authenticated: %}
-            <a class="btn cta-button red-button" href="{{ url_for('edit_project', project_id=project.id) }}" role="button">Edit Project</a>
-            <a class="btn cta-button outline-red-button mx-2 my-2" href="{{ url_for('delete_project', project_id=project.id) }}" role="button">Delete Project</a>
+            <a class="btn cta-button red-button mx-2 my-2" href="{{ url_for('edit_project', project_id=project.id) }}"
+               role="button">Edit Project</a>
+            <a class="btn cta-button outline-red-button mx-2 my-2"
+               href="{{ url_for('delete_project', project_id=project.id) }}" role="button">Delete Project</a>
             {% endif %}
         </div>
-        <div class="mt-5">
+        <div>
             <a class="btn cta-button red-button" href="{{ url_for('portfolio') }}" role="button">Portfolio</a>
         </div>
-
 
     </div>
 </section>

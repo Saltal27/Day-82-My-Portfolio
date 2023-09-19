@@ -4,25 +4,24 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from functools import wraps
 
-from forms import ContactMe, LoginForm, AddProjectForm, AddTestimonialForm
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, LoginManager, current_user, login_user, login_required, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from forms import ContactMe, LoginForm, AddProjectForm, AddTestimonialForm
+
 # ---------------------------- CREDENTIALS ------------------------------- #
 # MY_EMAIL = os.environ.get("MY_EMAIL")
 # MY_PASSWORD = os.environ.get("MY_PASSWORD")
-MY_EMAIL = "pythontest32288@gmail.com"
-MY_PASSWORD = "gsrfzucledwimgqp"
-LOGO = "</>"
 
+LOGO = "</>"
 
 # ------------------ Initializing A Flask App With Some Extensions --------------------- #
 # Initialize the Flask app and set a secret key
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'c9d7e8a6bf2c0e3d4f5a6b7c8d9e0f1a'
+
 
 # Initialize the Bootstrap extension
 Bootstrap(app)

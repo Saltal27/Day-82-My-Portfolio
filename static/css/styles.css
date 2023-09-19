@@ -63,8 +63,20 @@ label {
     text-align: center;
 }
 
+.form-container {
+    text-align: left;
+}
+
 .lead {
     font-size: 26px;
+}
+
+.flask-WTForm span {
+    color: #F45050;
+}
+
+.form-group {
+    margin-bottom: 30px;
 }
 
 .text-center {
@@ -291,7 +303,7 @@ nav.navbar ul li a:hover,
 
 
 
-/* ---------------------------- About Me Section ---------------------------- */
+/* ---------------------------- About Section ---------------------------- */
 #about span {
     color: #EA5455;
 }
@@ -492,9 +504,7 @@ nav.navbar ul li a:hover,
 
 
 /* ---------------------------- Contact Me Section ---------------------------- */
-.form-control {
-    margin-bottom: 20px;
-}
+
 
 
 

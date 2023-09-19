@@ -1,22 +1,16 @@
-{% with
-title="Admin Login",
-content="I am a Python developer and UI/UX designer with expertise in Flask, HTML, CSS, and JavaScript. I am passionate about creating visually appealing and user-friendly web applications. I am currently pursuing a degree in Medicine at Damascus University, and though I lack a formal qualification in Computer Science, I have a keen interest in programming and design. I have gained practical experience through personal projects, developing attractive and easy-to-use web applications. My goal is to combine my medical knowledge with programming skills to create innovative solutions in the healthcare industry.",
-keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web applications, Medicine, Damascus University, programming, design, personal projects, healthcare industry, innovative solutions."
-%}
-
+{% with title="Admin Login" %}
 {% include "header.html" %}
-
 {% endwith %}
 
 <section class="py-5 solo_section">
     <div class="container">
         <div class="section-title">
             <h2>Admin Login</h2>
-            <p>Login as an Admin to have some additional features!</p>
+            <p>Login as an Admin to enjoy additional features!</p>
         </div>
 
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto" style="text-align: left;">
+            <div class="col-lg-8 col-md-10 mx-auto form-container">
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 {% for message in messages %}
@@ -32,14 +26,14 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                         <label class="mb-2" for="email">Email:</label>
                         {{ login_form.email(class="form-control form-input mb-3", placeholder="Email") }}
                         {% for error in login_form.email.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="password">Password:</label>
                         {{ login_form.password(class="form-control form-input mb-3", placeholder="Password") }}
                         {% for error in login_form.password.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="text-center">

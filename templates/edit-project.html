@@ -1,11 +1,5 @@
-{% with
-title="Edit Project",
-content="I am a Python developer and UI/UX designer with expertise in Flask, HTML, CSS, and JavaScript. I am passionate about creating visually appealing and user-friendly web applications. I am currently pursuing a degree in Medicine at Damascus University, and though I lack a formal qualification in Computer Science, I have a keen interest in programming and design. I have gained practical experience through personal projects, developing attractive and easy-to-use web applications. My goal is to combine my medical knowledge with programming skills to create innovative solutions in the healthcare industry.",
-keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web applications, Medicine, Damascus University, programming, design, personal projects, healthcare industry, innovative solutions."
-%}
-
+{% with title="Edit Project" %}
 {% include "header.html" %}
-
 {% endwith %}
 
 <section class="py-5 solo_section">
@@ -16,90 +10,84 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
         </div>
 
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto" style="text-align: left;">
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                {% for message in messages %}
-                <p style="color: #F45050;">{{ message }}</p>
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
-
-                <form action="{{ url_for('edit_project', project_id=project.id) }}" class="flask-WTForm" method="POST" novalidate>
+            <div class="col-lg-8 col-md-10 mx-auto form-container">
+                <form action="{{ url_for('edit_project', project_id=project.id) }}" class="flask-WTForm" method="POST"
+                      novalidate>
                     {{ form.hidden_tag() }}
 
                     <div class="form-group">
                         <label class="mb-2" for="title">Project Title:</label>
                         {{ form.title(class="form-control form-input mb-3", placeholder="Project Title") }}
                         {% for error in form.title.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="subtitle">Subtitle:</label>
                         {{ form.subtitle(class="form-control form-input mb-3", placeholder="Subtitle") }}
                         {% for error in form.subtitle.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="category">Category:</label>
                         {{ form.category(class="form-control form-input mb-3", placeholder="Category") }}
                         {% for error in form.category.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="description">Description:</label>
                         {{ form.description(class="form-control form-input mb-3", placeholder="Description") }}
                         {% for error in form.description.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="imgs_urls">Imgs URLs:</label>
                         {{ form.imgs_urls(class="form-control form-input mb-3", placeholder="Imgs URLs") }}
                         {% for error in form.imgs_urls.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="technologies_used">Technologies Used:</label>
-                        {{ form.technologies_used(class="form-control form-input mb-3", placeholder="Technologies Used") }}
+                        {{ form.technologies_used(class="form-control form-input mb-3", placeholder="Technologies Used")
+                        }}
                         {% for error in form.technologies_used.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="role">Role:</label>
                         {{ form.role(class="form-control form-input mb-3", placeholder="Role") }}
                         {% for error in form.role.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="links">Links:</label>
                         {{ form.links(class="form-control form-input mb-3", placeholder="Links") }}
                         {% for error in form.links.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="links_texts">Links Texts:</label>
                         {{ form.links_texts(class="form-control form-input mb-3", placeholder="Links Texts") }}
                         {% for error in form.links_texts.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label class="mb-2" for="status">Status:</label>
                         {{ form.status(class="form-control form-input mb-3", placeholder="Status") }}
                         {% for error in form.status.errors %}
-                        <span style="color: #F45050;">{{ error }}</span>
+                        <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="text-center">
-                        {{ form.submit(class="btn red-button cta-button_button") }}
+                        {{ form.submit(class="btn red-button cta-button") }}
                     </div>
                 </form>
             </div>

@@ -1,18 +1,13 @@
-{% with
-title="Omar Mobarak",
-content="I am a Python developer and UI/UX designer with expertise in Flask, HTML, CSS, and JavaScript. I am passionate about creating visually appealing and user-friendly web applications. I am currently pursuing a degree in Medicine at Damascus University, and though I lack a formal qualification in Computer Science, I have a keen interest in programming and design. I have gained practical experience through personal projects, developing attractive and easy-to-use web applications. My goal is to combine my medical knowledge with programming skills to create innovative solutions in the healthcare industry.",
-keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web applications, Medicine, Damascus University, programming, design, personal projects, healthcare industry, innovative solutions."
-%}
-
+{% with title="Omar Mobarak" %}
 {% include "header.html" %}
-
 {% endwith %}
 
 <!-- ======= Hero Section ======= -->
 <section class="d-flex flex-column justify-content-center align-items-center" id="hero">
     <div class="hero-container" data-aos="fade-in">
         <h1>I am Omar Mobarak</h1>
-        <p class="lead">A <em><span class="typed" data-typed-items="Python Developer, Web Developer, UI/UX Designer"></span></em></p>
+        <p class="lead">A <em><span class="typed"
+                                    data-typed-items="Python Developer, Web Developer, UI/UX Designer"></span></em></p>
         <a class="btn cta-button red-button" href="#portfolio" role="button">My Portfolio</a>
 
         {% with messages = get_flashed_messages() %}
@@ -229,52 +224,53 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
 <!-- End Portfolio Section -->
 
 
-<!-- ======= Testimonials Section ======= -->
-<section class="py-5" id="testimonials">
-    <div class="container">
-        <h2 class="text-center">Testimonials</h2>
-        <p>Client success stories that speak volumes!</p>
+<!--&lt;!&ndash; ======= Testimonials Section ======= &ndash;&gt;-->
+<!--<section class="py-5" id="testimonials">-->
+<!--    <div class="container">-->
+<!--        <h2 class="text-center">Testimonials</h2>-->
+<!--        <p>Client success stories that speak volumes!</p>-->
 
-        <div class="content-wrapper mx-auto">
-            <div class="wrapper-for-arrows">
-                <div id="reviewWrap" class="review-wrap">
-                    <div id="testimonialId" style="display: none;"></div>
-                    <div id="imgDiv" class="">
-                    </div>
-                    <div id="personName"></div>
-                    <a href="#" id="profession"></a>
-                    <div id="description">
-                    </div>
-                </div>
-                <div class="left-arrow-wrap arrow-wrap">
-                    <div class="arrow" id="leftArrow"></div>
-                </div>
-                <div class="right-arrow-wrap arrow-wrap">
-                    <div class="arrow" id="rightArrow"></div>
-                </div>
-            </div>
-            {% if current_user.is_authenticated: %}
-            <a id="addTestimonial" class="btn cta-button red-button mx-2 my-2" href="{{ url_for('add_new_testimonial') }}" role="button">Add</a>
-            <a id="editTestimonial" class="btn cta-button outline-red-button mx-2 my-2" role="button">Edit</a>
-            <a id="deleteTestimonial" class="btn cta-button red-button mx-2 my-2" role="button">Delete</a>
-            {% endif %}
-        </div>
-    </div>
+<!--        <div class="content-wrapper mx-auto">-->
+<!--            <div class="wrapper-for-arrows">-->
+<!--                <div id="reviewWrap" class="review-wrap">-->
+<!--                    <div id="testimonialId" style="display: none;"></div>-->
+<!--                    <div id="imgDiv" class="">-->
+<!--                    </div>-->
+<!--                    <div id="personName"></div>-->
+<!--                    <a href="#" id="profession"></a>-->
+<!--                    <div id="description">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="left-arrow-wrap arrow-wrap">-->
+<!--                    <div class="arrow" id="leftArrow"></div>-->
+<!--                </div>-->
+<!--                <div class="right-arrow-wrap arrow-wrap">-->
+<!--                    <div class="arrow" id="rightArrow"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            {% if current_user.is_authenticated: %}-->
+<!--            <a id="addTestimonial" class="btn cta-button red-button mx-2 my-2"-->
+<!--               href="{{ url_for('add_new_testimonial') }}" role="button">Add</a>-->
+<!--            <a id="editTestimonial" class="btn cta-button outline-red-button mx-2 my-2" role="button">Edit</a>-->
+<!--            <a id="deleteTestimonial" class="btn cta-button red-button mx-2 my-2" role="button">Delete</a>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+<!--    </div>-->
 
-    {% if current_user.is_authenticated %}
-        <script>
-            var testimonialsList = {{ testimonials_list|tojson }};
-            console.log(testimonialsList);
-        </script>
-    {% else %}
-        <script>
-            console.log({{ online_testimonials_list|tojson }});
-            var testimonialsList = {{ online_testimonials_list|tojson }};
-        </script>
-    {% endif %}
+<!--    {% if current_user.is_authenticated %}-->
+<!--    <script>-->
+<!--        var testimonialsList = {{ testimonials_list|tojson }};-->
+<!--        console.log(testimonialsList);-->
+<!--    </script>-->
+<!--    {% else %}-->
+<!--    <script>-->
+<!--        var testimonialsList = {{ online_testimonials_list|tojson }};-->
+<!--        console.log(testimonialsList);-->
+<!--    </script>-->
+<!--    {% endif %}-->
 
-</section>
-<!-- End Testimonials Section -->
+<!--</section>-->
+<!--&lt;!&ndash; End Testimonials Section &ndash;&gt;-->
 
 
 <!-- ======= Contact Section ======= -->
@@ -289,33 +285,30 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
         </div>
 
         <div class="row" data-aos="fade-in">
-            <div class="col-lg-10 mt-2 mb-3 d-flex align-items-stretch justify-content-center mx-auto">
-                <form style="text-align: left;" action="{{ url_for('home') }}#contact" class="flask-WTForm" method="POST" novalidate>
+            <div class="col-lg-10 mt-2 mb-3 d-flex align-items-stretch justify-content-center mx-auto form-container">
+                <form action="{{ url_for('home') }}#contact" class="flask-WTForm"
+                      method="POST" novalidate>
                     {{ contact_form.hidden_tag() }}
+                    
                     {% if sent_successfully %}
                     <span id="success-message"
                           style="color: #28a745; padding: 5px 10px; border-radius: 5px; margin-bottom: 10px;">
-                                    {{ sent_successfully }}
-                                </span>
+                          {{ sent_successfully }}
+                    </span>
                     <script>
-                                  // Get the success message element
-                                  var successMessage = document.getElementById("success-message");
-
-                                  // Remove the success message when the page is refreshed
-                                  window.addEventListener("beforeunload", function() {
-                                    successMessage.remove();
-                                  });
-
-
+                         var successMessage = document.getElementById("success-message");
+                         
+                         window.addEventListener("beforeunload", function() {
+                           successMessage.remove();
+                         });
                     </script>
                     {% endif %}
+                    
                     <script>
                               // Clear the URL hash after loading the page
                               window.addEventListener('load', function() {
                                 window.history.replaceState({}, document.title, window.location.pathname);
                               });
-
-
                     </script>
 
                     <div class="row">
@@ -323,7 +316,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                             <label for="name">Name:</label>
                             {{ contact_form.name(class="form-control form-input", placeholder="Name") }}
                             {% for error in contact_form.name.errors %}
-                            <span style="color: red;">{{ error }}</span>
+                             <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                         <div class="form-group col-md-6">
@@ -331,7 +324,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                             {{ contact_form.phone_number(class="form-control form-input", placeholder="Phone Number")
                             }}
                             {% for error in contact_form.phone_number.errors %}
-                            <span style="color: red;">{{ error }}</span>
+                             <span>{{ error }}</span>
                             {% endfor %}
                         </div>
                     </div>
@@ -339,14 +332,14 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
                         <label for="email">Email:</label>
                         {{ contact_form.email(class="form-control form-input", placeholder="Email") }}
                         {% for error in contact_form.email.errors %}
-                        <span style="color: red;">{{ error }}</span>
+                         <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="form-group">
                         <label for="message">Message:</label>
                         {{ contact_form.message(class="form-control form-textarea", placeholder="Message") }}
                         {% for error in contact_form.message.errors %}
-                        <span style="color: red;">{{ error }}</span>
+                         <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                     <div class="text-center">
