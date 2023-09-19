@@ -1,72 +1,28 @@
-import datetime as dt
 import smtplib
 import socket
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from functools import wraps
 
+from forms import ContactMe, LoginForm, AddProjectForm, AddTestimonialForm
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_login import UserMixin, LoginManager, current_user, login_user, login_required, logout_user
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
 from werkzeug.security import check_password_hash, generate_password_hash
-from wtforms import StringField, SubmitField, TextAreaField, PasswordField
-from wtforms.validators import DataRequired, Email, Length
 
 # ---------------------------- CREDENTIALS ------------------------------- #
 # MY_EMAIL = os.environ.get("MY_EMAIL")
 # MY_PASSWORD = os.environ.get("MY_PASSWORD")
-
-
+MY_EMAIL = "pythontest32288@gmail.com"
+MY_PASSWORD = "gsrfzucledwimgqp"
 LOGO = "</>"
-
-
-# ---------------------------- WTForms ------------------------------- #
-class ContactMe(FlaskForm):
-    name = StringField("Name", validators=[DataRequired(message='This field is required.')])
-    email = StringField("Email", validators=[DataRequired(message='This field is required.'), Email()])
-    phone_number = StringField("Phone Number", validators=[DataRequired(message='This field is required.')])
-    message = TextAreaField("Message", validators=[DataRequired(message='This field is required.')],
-                            render_kw={"rows": 10})
-    submit = SubmitField("Submit")
-
-
-class LoginForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired(message='This field is required.'), Email()])
-    password = PasswordField("Password",
-                             validators=[DataRequired(message='This field is required.'), Length(min=8, max=50)])
-    submit = SubmitField("Login")
-
-
-class AddProjectForm(FlaskForm):
-    title = StringField("Project Title", validators=[DataRequired()])
-    subtitle = StringField("Project Subtitle")
-    category = StringField("Project Category", validators=[DataRequired()])
-    description = StringField("Project Description", validators=[DataRequired()])
-    imgs_urls = StringField("Images URLs", validators=[DataRequired()])
-    technologies_used = StringField("Technologies Used")
-    role = StringField("Role", validators=[DataRequired()])
-    links = StringField("Links")
-    links_texts = StringField("Links Texts")
-    status = StringField("Status", validators=[DataRequired()])
-    submit = SubmitField("Submit Project", validators=[DataRequired()])
-
-
-class AddTestimonialForm(FlaskForm):
-    photo = StringField("Photo", validators=[DataRequired()])
-    name = StringField("Project Subtitle", validators=[DataRequired()])
-    profession = StringField("Profession", validators=[DataRequired()])
-    profession_link = StringField("Profession Link", validators=[DataRequired()])
-    description = StringField("Description", validators=[DataRequired()])
-    status = StringField("Status", validators=[DataRequired()])
-    submit = SubmitField("Submit Testimonial", validators=[DataRequired()])
 
 
 # ------------------ Initializing A Flask App With Some Extensions --------------------- #
 # Initialize the Flask app and set a secret key
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6derzihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = 'c9d7e8a6bf2c0e3d4f5a6b7c8d9e0f1a'
 
 # Initialize the Bootstrap extension
 Bootstrap(app)
@@ -146,6 +102,32 @@ with app.app_context():
 
 
 # ---------------------------- Custom Functions ------------------------------- #
+# Create a custom function to print all users in the database
+def all_users():
+    users = User.query.all()
+    print(users)
+
+
+# Create a custom function to add users to the database
+def add_user_db(name, email, password):
+    with app.app_context():
+        new_user = User()
+        new_user.name = name
+        new_user.email = email
+        salted_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
+        new_user.password = salted_hash
+        db.session.add(new_user)
+        db.session.commit()
+
+
+# Create a custom function to delete a user from the database
+def delete_user(user_id):
+    user_to_delete = User.query.get(user_id)
+    db.session.delete(user_to_delete)
+    db.session.commit()
+
+
+# Create a custom function to send emails
 def send_mail(name, email, phone, message):
     # create message object instance
     msg = MIMEMultipart()
@@ -197,9 +179,6 @@ def load_user(user_id):
 # ---------------------------- Main Pages Routes ------------------------------- #
 @app.route("/", methods=["GET", "Post"])
 def home():
-    now = dt.datetime.now()
-    year = now.year
-
     projects = Project.query.all()
     projects_webdev = [project for project in projects if project.category == "Web Development"]
     projects_uiux = [project for project in projects if project.category == "UI/UX"]
@@ -251,7 +230,6 @@ def home():
     return render_template(
         "index.html",
         logo=LOGO,
-        year=year,
         projects=projects,
         projects_webdev=projects_webdev,
         projects_uiux=projects_uiux,
@@ -280,6 +258,7 @@ def portfolio():
 
     return render_template(
         "portfolio.html",
+        logo=LOGO,
         projects=projects,
         projects_webdev=projects_webdev,
         projects_uiux=projects_uiux,
@@ -294,16 +273,13 @@ def portfolio():
 @app.route("/Portfolio/<int:project_id>", methods=["GET", "Post"])
 def project_details(project_id):
     project = Project.query.filter_by(id=project_id).first()
-    return render_template("project-details.html", project=project)
+    return render_template("project-details.html", logo=LOGO, project=project)
 
 
 # ---------------------------- Admin Pages Routes ------------------------------- #
 @app.route("/login-admin", methods=["GET", "Post"])
 @logout_required
 def login_admin():
-    now = dt.datetime.now()
-    year = now.year
-
     login_form = LoginForm()
     if login_form.validate_on_submit():
         email = login_form.email.data
@@ -321,7 +297,6 @@ def login_admin():
 
     return render_template("login-admin.html",
                            logo=LOGO,
-                           year=year,
                            login_form=login_form
                            )
 
@@ -355,7 +330,7 @@ def add_new_project():
             db.session.commit()
         return redirect(url_for("home"))
 
-    return render_template("add-project.html", form=add_form)
+    return render_template("add-project.html", logo=LOGO, form=add_form)
 
 
 @app.route("/edit-project/<int:project_id>", methods=["GET", "Post"])
@@ -368,7 +343,7 @@ def edit_project(project_id):
         db.session.commit()
         return redirect(url_for("project_details", project_id=project.id))
 
-    return render_template("edit-project.html", form=edit_form, project=project)
+    return render_template("edit-project.html", logo=LOGO, form=edit_form, project=project)
 
 
 @app.route("/delete/<int:project_id>")
@@ -398,7 +373,7 @@ def add_new_testimonial():
             db.session.commit()
         return redirect(url_for("home"))
 
-    return render_template("add-testimonial.html", form=add_form)
+    return render_template("add-testimonial.html", logo=LOGO, form=add_form)
 
 
 @app.route("/edit-testimonial/<int:testimonial_id>", methods=["GET", "POST"])
@@ -411,7 +386,7 @@ def edit_testimonial(testimonial_id):
         db.session.commit()
         return redirect(url_for('home'))
 
-    return render_template("edit-testimonial.html", form=edit_form, testimonial=testimonial)
+    return render_template("edit-testimonial.html", logo=LOGO, form=edit_form, testimonial=testimonial)
 
 
 @app.route("/delete-testimonial/<int:testimonial_id>")

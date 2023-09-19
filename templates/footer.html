@@ -1,7 +1,7 @@
     <!-- ======= Footer ======= -->
     <footer class="text-white text-center py-3">
         <div class="container">
-            <p>&copy; {{ year }} Omar Mobarak. All rights reserved.</p>
+            <p id="year">&copy; 2023 Omar Mobarak. All rights reserved.</p>
             <div class="footer-links">
                 <a class="text-white" href="https://wa.me/963967208077"><i class="fab fa-lg fa-whatsapp"></i></a>
                 <a class="text-white" href="https://t.me/Omarmobarak"><i class="fab fa-lg fa-telegram"></i></a>
@@ -9,6 +9,11 @@
                 <a class="text-white" href="https://dribbble.com/SalTal1"><i class="fab fa-lg fa-dribbble"></i></a>
             </div>
         </div>
+
+        <script>
+            const currentYear = new Date().getFullYear();
+            document.getElementById('year').innerHTML = `&copy; ${currentYear} Omar Mobarak. All rights reserved.`;
+        </script>
     </footer>
     <!-- End  Footer -->
 
