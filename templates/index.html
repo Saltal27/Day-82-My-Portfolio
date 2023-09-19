@@ -12,7 +12,7 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
 <section class="d-flex flex-column justify-content-center align-items-center" id="hero">
     <div class="hero-container" data-aos="fade-in">
         <h1>I am Omar Mobarak</h1>
-        <p>A <em><span class="typed" data-typed-items="Python Developer, Web Developer, UI/UX Designer"></span></em></p>
+        <p class="lead">A <em><span class="typed" data-typed-items="Python Developer, Web Developer, UI/UX Designer"></span></em></p>
         <a class="btn cta-button red-button" href="#portfolio" role="button">My Portfolio</a>
 
         {% with messages = get_flashed_messages() %}
@@ -229,52 +229,52 @@ keywords="Python developer, UI/UX designer, Flask, HTML, CSS, JavaScript, web ap
 <!-- End Portfolio Section -->
 
 
-<!--&lt;!&ndash; ======= Testimonials Section ======= &ndash;&gt;-->
-<!--<section class="py-5" id="testimonials">-->
-<!--    <div class="container">-->
-<!--        <h2 class="text-center">Testimonials</h2>-->
-<!--        <p>Client success stories that speak volumes!</p>-->
+<!-- ======= Testimonials Section ======= -->
+<section class="py-5" id="testimonials">
+    <div class="container">
+        <h2 class="text-center">Testimonials</h2>
+        <p>Client success stories that speak volumes!</p>
 
-<!--        <div class="content-wrapper mx-auto">-->
-<!--            <div class="wrapper-for-arrows">-->
-<!--                <div id="reviewWrap" class="review-wrap">-->
-<!--                    <div id="testimonialId" style="display: none;"></div>-->
-<!--                    <div id="imgDiv" class="">-->
-<!--                    </div>-->
-<!--                    <div id="personName"></div>-->
-<!--                    <a href="#" id="profession"></a>-->
-<!--                    <div id="description">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="left-arrow-wrap arrow-wrap">-->
-<!--                    <div class="arrow" id="leftArrow"></div>-->
-<!--                </div>-->
-<!--                <div class="right-arrow-wrap arrow-wrap">-->
-<!--                    <div class="arrow" id="rightArrow"></div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            {% if current_user.is_authenticated: %}-->
-<!--            <a id="addTestimonial" class="btn cta-button red-button mx-2 my-2" href="{{ url_for('add_new_testimonial') }}" role="button">Add</a>-->
-<!--            <a id="editTestimonial" class="btn cta-button outline-red-button mx-2 my-2" role="button">Edit</a>-->
-<!--            <a id="deleteTestimonial" class="btn cta-button red-button mx-2 my-2" role="button">Delete</a>-->
-<!--            {% endif %}-->
-<!--        </div>-->
-<!--    </div>-->
+        <div class="content-wrapper mx-auto">
+            <div class="wrapper-for-arrows">
+                <div id="reviewWrap" class="review-wrap">
+                    <div id="testimonialId" style="display: none;"></div>
+                    <div id="imgDiv" class="">
+                    </div>
+                    <div id="personName"></div>
+                    <a href="#" id="profession"></a>
+                    <div id="description">
+                    </div>
+                </div>
+                <div class="left-arrow-wrap arrow-wrap">
+                    <div class="arrow" id="leftArrow"></div>
+                </div>
+                <div class="right-arrow-wrap arrow-wrap">
+                    <div class="arrow" id="rightArrow"></div>
+                </div>
+            </div>
+            {% if current_user.is_authenticated: %}
+            <a id="addTestimonial" class="btn cta-button red-button mx-2 my-2" href="{{ url_for('add_new_testimonial') }}" role="button">Add</a>
+            <a id="editTestimonial" class="btn cta-button outline-red-button mx-2 my-2" role="button">Edit</a>
+            <a id="deleteTestimonial" class="btn cta-button red-button mx-2 my-2" role="button">Delete</a>
+            {% endif %}
+        </div>
+    </div>
 
-<!--    {% if current_user.is_authenticated %}-->
-<!--        <script>-->
-<!--            var testimonialsList = {{ testimonials_list|tojson }};-->
-<!--            console.log(testimonialsList);-->
-<!--        </script>-->
-<!--    {% else %}-->
-<!--        <script>-->
-<!--            console.log({{ online_testimonials_list|tojson }});-->
-<!--            var testimonialsList = {{ online_testimonials_list|tojson }};-->
-<!--        </script>-->
-<!--    {% endif %}-->
+    {% if current_user.is_authenticated %}
+        <script>
+            var testimonialsList = {{ testimonials_list|tojson }};
+            console.log(testimonialsList);
+        </script>
+    {% else %}
+        <script>
+            console.log({{ online_testimonials_list|tojson }});
+            var testimonialsList = {{ online_testimonials_list|tojson }};
+        </script>
+    {% endif %}
 
-<!--</section>-->
-<!--&lt;!&ndash; End Testimonials Section &ndash;&gt;-->
+</section>
+<!-- End Testimonials Section -->
 
 
 <!-- ======= Contact Section ======= -->
