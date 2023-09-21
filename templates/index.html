@@ -153,7 +153,7 @@
                     {% set projects_webdev = online_projects_webdev %}
                     {% endif %}
                     {% for project in projects_webdev[-1:-7:-1] %}
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-4 col-10 mb-4">
                         <div class="card">
                             <img alt="{{ project.title }}" class="card-img-top"
                                  src="{{ project.imgs_urls.split(', ')[0] }}">
@@ -174,7 +174,7 @@
                     {% set projects_uiux = online_projects_uiux %}
                     {% endif %}
                     {% for project in projects_uiux[-1:-7:-1] %}
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-4 col-10 mb-4">
                         <div class="card">
                             <img alt="{{ project.title }}" class="card-img-top"
                                  src="{{ project.imgs_urls.split(', ')[0] }}">
@@ -195,7 +195,7 @@
                     {% set projects_python= online_projects_python %}
                     {% endif %}
                     {% for project in projects_python[-1:-7:-1] %}
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-lg-4 col-10 mb-4">
                         <div class="card">
                             <img alt="{{ project.title }}" class="card-img-top"
                                  src="{{ project.imgs_urls.split(', ')[0] }}">
