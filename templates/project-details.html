@@ -13,7 +13,7 @@
             <div class="carousel-inner justify-content-center">
                 {% for img_url in project.imgs_urls.split(', ') %}
                 <div class="carousel-item {% if loop.first %}active{% endif %}" data-bs-interval="3000">
-                    <img alt="{{ project.title }} img" class="carousel-image img-fluid" src="{{ img_url }}">
+                    <a href="{{ img_url }}" target="_blank"><img alt="{{ project.title }} img" class="carousel-image img-fluid" src="{{ img_url }}"></a>
                 </div>
                 {% endfor %}
             </div>
