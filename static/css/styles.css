@@ -592,13 +592,4 @@ footer p {
     margin: 5px auto;
 }
 
-.carousel-item {
-    height: 500px;
-}
-
-.carousel-item img {
-    height: 100%;
-    object-fit: cover;
-}
-
 

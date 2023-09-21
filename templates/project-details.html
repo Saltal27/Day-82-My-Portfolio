@@ -6,14 +6,14 @@
     <div class="container">
         <h2>{{ project.title }}</h2>
         {% if project.subtitle %}
-        <p class="lead">{{ project.subtitle }}</p>
+        <p class="lead mb-0">{{ project.subtitle }}</p>
         {% endif %}
 
-        <div class="carousel" data-bs-ride="carousel" id="portfolioCarousel">
+        <div class="carousel my-3" data-bs-ride="carousel" id="portfolioCarousel">
             <div class="carousel-inner justify-content-center">
                 {% for img_url in project.imgs_urls.split(', ') %}
-                <div class="carousel-item {% if loop.first %}active{% endif %}" data-bs-interval="3000">
-                    <a href="{{ img_url }}" target="_blank"><img alt="{{ project.title }} img" class="carousel-image img-fluid" src="{{ img_url }}"></a>
+                <div class="carousel-item {% if loop.first %}active{% endif %}" data-bs-interval="4000" style="height: 500px;">
+                    <a href="{{ img_url }}" target="_blank"><img alt="{{ project.title }} img" class="carousel-image img-fluid" src="{{ img_url }}" style="height: 100%; width: auto; object-fit: scale-down;"></a>
                 </div>
                 {% endfor %}
             </div>
@@ -32,7 +32,7 @@
         <div class="description-container row justify-content-center">
             <h3>About this project</h3>
             <div class="col-lg-10">
-                {% for paragraph in project.description.split('. ') %}
+                {% for paragraph in project.description.split('. ')[:-1] %}
                 <p>{{ paragraph }}.</p>
                 {% endfor %}
             </div>
