@@ -3,47 +3,46 @@
 {% endwith %}
 
 <!-- ======= Portfolio Section ======= -->
-<section class="py-5 solo_section" id="portfolio">
+<section class="py-5" id="portfolio">
     <div class="container">
         <h2 class="text-center">Portfolio</h2>
-        <p>Embark on a humble exploration of my creative endeavors, where simplicity meets sophistication,
-            and every pixel is infused with intention. Join me as we traverse through a thoughtfully
-            curated portfolio, celebrating the art of design and the joy of crafting meaningful experiences,
-            with the sincere hope of leaving a positive impact on users and contributing to the
-            ever-evolving tapestry of creativity.</p>
+        <p>Unlocking creativity through thoughtful design and user-centric experiences!</p>
         <ul class="nav nav-pills justify-content-center mb-4" id="portfolio-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="all-tab" data-toggle="pill" href="#all" role="tab" aria-controls="all"
-                   aria-selected="true">All</a>
+                <a aria-controls="all" aria-selected="true" class="nav-link tab-link active" data-toggle="pill"
+                   href="#all"
+                   id="all-tab" role="tab">All</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="webdev-tab" data-toggle="pill" href="#webdev" role="tab" aria-controls="webdev"
-                   aria-selected="false">Web Development</a>
+                <a aria-controls="webdev" aria-selected="false" class="nav-link tab-link" data-toggle="pill"
+                   href="#webdev"
+                   id="webdev-tab" role="tab">Web Development</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="uiux-tab" data-toggle="pill" href="#uiux" role="tab" aria-controls="uiux"
-                   aria-selected="false">UI/UX Design</a>
+                <a aria-controls="uiux" aria-selected="false" class="nav-link tab-link" data-toggle="pill" href="#uiux"
+                   id="uiux-tab" role="tab">UI/UX Design</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="python-tab" data-toggle="pill" href="#python" role="tab" aria-controls="python"
-                   aria-selected="false">Other Python Projects</a>
+                <a aria-controls="python" aria-selected="false" class="nav-link tab-link" data-toggle="pill"
+                   href="#python"
+                   id="python-tab" role="tab">Other Python Projects</a>
             </li>
         </ul>
         <div class="tab-content" id="portfolio-tabs-content">
-            <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+            <div aria-labelledby="all-tab" class="tab-pane fade show active" id="all" role="tabpanel">
                 <div class="row justify-content-center">
                     {% if not current_user.is_authenticated %}
                     {% set projects = online_projects %}
                     {% endif %}
-                    {% for project in projects[::-1] %}
+                    {% for project in projects[-1:-7:-1] %}
                     <div class="col-lg-4 col-10 mb-4">
                         <div class="card">
                             <img alt="{{ project.title }}" class="card-img-top"
                                  src="{{ project.imgs_urls.split(', ')[0] }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ project.title }}</h5>
+                            <div class="card-body flexbox">
+                                <p class="card-title">{{ project.title }}</p>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button"
+                                <a class="btn outline-red-button w-50 mx-auto"
                                    href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
@@ -51,20 +50,20 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="tab-pane fade" id="webdev" role="tabpanel" aria-labelledby="webdev-tab">
+            <div aria-labelledby="webdev-tab" class="tab-pane fade" id="webdev" role="tabpanel">
                 <div class="row justify-content-center">
                     {% if not current_user.is_authenticated %}
                     {% set projects_webdev = online_projects_webdev %}
                     {% endif %}
-                    {% for project in projects_webdev[::-1] %}
+                    {% for project in projects_webdev[-1:-7:-1] %}
                     <div class="col-lg-4 col-10 mb-4">
                         <div class="card">
                             <img alt="{{ project.title }}" class="card-img-top"
                                  src="{{ project.imgs_urls.split(', ')[0] }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ project.title }}</h5>
+                            <div class="card-body flexbox">
+                                <p class="card-title">{{ project.title }}</p>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button"
+                                <a class="btn outline-red-button w-50 mx-auto"
                                    href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
@@ -72,20 +71,20 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="tab-pane fade" id="uiux" role="tabpanel" aria-labelledby="uiux-tab">
+            <div aria-labelledby="uiux-tab" class="tab-pane fade" id="uiux" role="tabpanel">
                 <div class="row justify-content-center">
                     {% if not current_user.is_authenticated %}
                     {% set projects_uiux = online_projects_uiux %}
                     {% endif %}
-                    {% for project in projects_uiux[::-1] %}
+                    {% for project in projects_uiux[-1:-7:-1] %}
                     <div class="col-lg-4 col-10 mb-4">
                         <div class="card">
                             <img alt="{{ project.title }}" class="card-img-top"
                                  src="{{ project.imgs_urls.split(', ')[0] }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ project.title }}</h5>
+                            <div class="card-body flexbox">
+                                <p class="card-title">{{ project.title }}</p>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button"
+                                <a class="btn outline-red-button w-50 mx-auto"
                                    href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
@@ -93,20 +92,20 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="tab-pane fade" id="python" role="tabpanel" aria-labelledby="python-tab">
+            <div aria-labelledby="python-tab" class="tab-pane fade" id="python" role="tabpanel">
                 <div class="row justify-content-center">
                     {% if not current_user.is_authenticated %}
                     {% set projects_python= online_projects_python %}
                     {% endif %}
-                    {% for project in projects_python[::-1] %}
+                    {% for project in projects_python[-1:-7:-1] %}
                     <div class="col-lg-4 col-10 mb-4">
                         <div class="card">
                             <img alt="{{ project.title }}" class="card-img-top"
                                  src="{{ project.imgs_urls.split(', ')[0] }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ project.title }}</h5>
+                            <div class="card-body flexbox">
+                                <p class="card-title">{{ project.title }}</p>
                                 <p class="card-text">{{ project.subtitle }}.</p>
-                                <a class="btn outline-red-button"
+                                <a class="btn outline-red-button w-50 mx-auto"
                                    href="{{ url_for('project_details', project_id=project.id) }}">View Details</a>
                             </div>
                         </div>
@@ -117,11 +116,11 @@
         </div>
 
         {% if current_user.is_authenticated: %}
-        <a class="btn cta-button red-button mx-2 my-2" href="{{ url_for('home') }}" role="button">Home</a>
+        <a class="btn cta-button red-button mx-2 my-2" href="{{ url_for('portfolio') }}" role="button">Show More</a>
         <a class="btn cta-button outline-red-button mx-2 my-2" href="{{ url_for('add_new_project') }}" role="button">New
             Project</a>
         {% else: %}
-        <a class="btn cta-button red-button" href="{{ url_for('home') }}" role="button">Home</a>
+        <a class="btn cta-button red-button" href="{{ url_for('portfolio') }}" role="button">Show More</a>
         {% endif %}
     </div>
 </section>

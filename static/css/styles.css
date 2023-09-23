@@ -370,9 +370,12 @@ nav.navbar ul li a:hover,
 }
 
 #portfolio-tabs-content .card {
-    border: none;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #portfolio-tabs-content .card:hover {
@@ -385,6 +388,13 @@ nav.navbar ul li a:hover,
     object-fit: cover;
 }
 
+.flexbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .card-title {
     font-size: 20px;
     font-weight: bold;
@@ -393,6 +403,9 @@ nav.navbar ul li a:hover,
 
 .card-text {
     color: #777;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 
